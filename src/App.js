@@ -7,7 +7,8 @@ import TogleTheme from './Components/TogleTheme';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import About from './Components/About';
-
+import NavbarBottom from './Components/NavbarBottom';
+import NavigationLg from './Components/NavigationLg';
 
 
 
@@ -37,10 +38,12 @@ function App() {
     <ThemeProvider  theme={myTheme}>
       <CssBaseline />
         <TogleTheme toggleDark={toggleDark} settoggleDark={settoggleDark} />
+        <NavigationLg />
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/about' element={<About/>} />
         </Routes>
+        <NavbarBottom/>
   </ThemeProvider>
 
 

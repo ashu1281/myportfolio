@@ -13,8 +13,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 export const Home = () => {
 	const navigate = useNavigate();
 
-	
-
 	return (
 		<Box minHeight="710px" height="100vh" overflow="hidden">
 			<Box
@@ -66,7 +64,7 @@ export const Home = () => {
 							<Box display={{ xs: 'flex', md: 'none' }}>
 								<Avatar
 									alt="Ashish  Gaikwad Image"
-									src={myImage2}
+									// src={myImage2}
 									sx={{
 										width: '100%',
 										height: '300px',
