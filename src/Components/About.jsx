@@ -17,9 +17,9 @@ import Journey from './Journey';
 import { FiDownload } from 'react-icons/fi';
 
 import '../Styles/index.css';
-// import 'animate.css';
 
-// import { motion } from 'framer-motion';
+
+import { motion } from 'framer-motion';
 
 export default function About() {
    const container = {
@@ -73,7 +73,7 @@ export default function About() {
 					<Box display="flex" justifyContent="center" mb={{ xs: 6, lg: 0 }}>
 						<Avatar
 							alt="Ashish  Gaikwad Pic"
-							// src={myImage}
+							src={myImage}
 							sx={{
 								width: '300px',
 								height: '320px',
@@ -162,13 +162,13 @@ export default function About() {
 					my={4}
 					color="text.primary"
 					textAlign="center"
-	                // component={motion.ul} 
+	                component={motion.ul} 
 					variants={container} initial="hidden" animate="visible"
 					className="container"
 				>
 					{skills?.map((skill, i) => (
 						<Grid xs={6} sm={4} lg={3} key={skill?.id} sx={{listStyle:'none',flexGrow:'1 !important'}}  
-						// component={motion.li} 
+						component={motion.li} 
 						variants={item}
 						>
 							<Box

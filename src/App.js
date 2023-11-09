@@ -9,6 +9,7 @@ import { CssBaseline } from '@mui/material';
 import About from './Components/About';
 import NavbarBottom from './Components/NavbarBottom';
 import NavigationLg from './Components/NavigationLg';
+import Contact from './Components/Contact';
 
 
 
@@ -42,6 +43,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/about' element={<About/>} />
+          <Route path='contact' element={<Contact/>} />
+          <Route path='*' element={<Home/>} />
         </Routes>
         <NavbarBottom/>
   </ThemeProvider>

@@ -51,20 +51,20 @@ export const Home = () => {
 										bgcolor: '#000000ed',
 									}}
 								>
-									{/* <CardMedia
+									<CardMedia
 										component="img"
 										image={myImage}
 										alt="Ashish  Gaikwad Pic"
 										height="100%"
 										width="100%"
-									/> */}
+									/>
 								</Card>
 							</Box>
 
 							<Box display={{ xs: 'flex', md: 'none' }}>
 								<Avatar
 									alt="Ashish  Gaikwad Image"
-									// src={myImage2}
+									src={myImage2}
 									sx={{
 										width: '100%',
 										height: '300px',
