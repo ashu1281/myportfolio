@@ -89,13 +89,13 @@ export const timelineData = [
 export const myProjects = [
 	{
 		id: 301,
-		title: 'Devita Watchs',
+		title: 'Scada Application',
 		img: electronPorjectImg,
-		link: 'https://devita-watchs.vercel.app/',
-		githubLink: 'https://github.com/e-mustafa/devita-watchs',
-		Language: ['HTML', 'CSS', 'Material Ui', 'Javascript', 'React', 'Next'],
+		link: '',
+		githubLink: 'https://www.electronjs.org/',
+		Language: ['HTML', 'CSS', 'Material Ui', 'Javascript', 'React', 'Electron'],
 		description:
-			'Online store for selling wristwatches, Developed using Next js 13 app dirctory, static & dynamic metadata, shopping cart, favorite list, With notifications toast.',
+		'Desktop SCADA application created using Electron.js and React.js. It is an online store for selling wristwatches, developed using Next.js 13 app directory, static & dynamic metadata, shopping cart, favorite list, with notifications toast.',
 	},
 	{
 		id: 302,
@@ -103,104 +103,8 @@ export const myProjects = [
 		img: portfolioImg,
 		link: "https://ashishgaikwad.me",
 		githubLink:"https://github.com/ashu1281/myportfolio",
-		Language: ["HTML", "CSS", "Bootstrap", "Javascript"],
-		description:
-			"Coffee shop template with edit bootstrap default colors and JavaScript shopping cart, favorite list, register and sign in with validate. With notifications toast. You need to register and sign in to checkout and add items to favorite list.",
-	},
-	{
-		id: 303,
-		title: 'Rocher-Furniture Tamplate',
-		img: electronPorjectImg,
-		link: 'https://e-mustafa.github.io/Tamplate-102-Rocher-Furniture',
-		githubLink: 'https://github.com/e-mustafa/Tamplate-102-Rocher-Furniture',
-		Language: ['HTML5', 'CSS3'],
-		description: 'Rocher-Furniture Tamplate html and some css3.',
-	},
-	{
-		id: 304,
-		title: 'Architectural Design Template',
-		img: electronPorjectImg,
-		link: 'https://e-mustafa.github.io/Tamplate-101/',
-		githubLink: 'https://github.com/e-mustafa/Tamplate-101',
-		Language: ['HTML', 'CSS'],
-		description: 'Architectur Design template html & css only.',
-	},
-	{
-		id: 305,
-		title: 'Simple Movies with Redux',
-		img: electronPorjectImg,
-		link: 'https://simplemovies-redux.netlify.app',
-		githubLink: 'https://github.com/e-mustafa/moviesApp-redux',
-		Language: ['HTML', 'CSS', 'Material Ui', 'Javascript', 'React', 'Redux'],
-		description:
-			'Simple movies website to discover popular movies, and add to favorite list, with using Redux.',
-	},
-	{
-		id: 306,
-		title: 'Simple Movies',
-		img: electronPorjectImg,
-		link: 'https://simplemovies-app.netlify.app',
-		githubLink: 'https://github.com/e-mustafa/sempleMoviesApp',
 		Language: ['HTML', 'CSS', 'Material Ui', 'Javascript', 'React'],
 		description:
-			'Simple movies website to discover popular movies, and add to favorite list.',
-	},
-	{
-		id: 307,
-		title: 'Lusion Shopping',
-		img: electronPorjectImg,
-		link: 'https://react-lusion-app.netlify.app',
-		githubLink: 'https://github.com/e-mustafa/React-Lusion-App',
-		Language: ['HTML', 'CSS', 'Bootstrap', 'Javascript', 'React'],
-		description:
-			'Lustion ecommerce web responsive with many pages and form validation.',
-	},
-	{
-		id: 308,
-		title: 'Cara Shoping',
-		img: electronPorjectImg,
-		link: 'https://cara-shoping.vercel.app',
-		githubLink: 'https://github.com/e-mustafa/Cara-Shoping',
-		Language: ['HTML', 'CSS', 'Bootstrap', 'Javascript'],
-		description:
-			'responsive ecommerce website main page, sign up and sign in made with js.',
-	},
-	{
-		id: 309,
-		title: 'Currency Exchange',
-		img: electronPorjectImg,
-		link: 'https://currency-exchange-mu.vercel.app',
-		githubLink: 'https://github.com/e-mustafa/currencyExchange',
-		Language: ['HTML', 'CSS', 'Bootstrap', 'Javascript'],
-		description:
-			'This is a simple Currency Converter application, I took help from this website, "exchangerate-api" to create an API connection.',
-	},
-	{
-		id: 310,
-		title: 'Basic Calculator',
-		img: electronPorjectImg,
-		link: 'https://basic-calculator-self.vercel.app',
-		githubLink: 'https://github.com/e-mustafa/basic-Calculator',
-		Language: ['HTML', 'CSS', 'Bootstrap', 'Javascript'],
-		description:
-			'Basic Calculator for doing simple mathematical operations: addition, subtraction, multiplication, division. This is a simplified version of the online.',
-	},
-	{
-		id: 311,
-		title: 'Watch Products',
-		img: electronPorjectImg,
-		link: 'https://watch-products.vercel.app',
-		githubLink: 'https://github.com/e-mustafa/Watch-Products',
-		Language: ['HTML', 'CSS', 'Bootstrap'],
-		description: 'single page responsive website.',
-	},
-	{
-		id: 312,
-		title: 'Template W Carousel',
-		img: electronPorjectImg,
-		link: 'https://template-w-carousel.vercel.app',
-		githubLink: 'https://github.com/e-mustafa/template-w-carousel',
-		Language: ['HTML', 'CSS', 'Bootstrap'],
-		description: 'single page responsive website.',
-	},
-];
+					""
+		},
+	]
