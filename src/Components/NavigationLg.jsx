@@ -43,13 +43,13 @@ const NavigationLg = () => {
                   </div>
                </div>
 
-               <div className='circle-btn' onClick={() => navigate(`${startLink}/Portfolio`)} >
-                  <Box className={location.pathname === `${startLink}/Portfolio` ? 'circle-btn-icon pageActive' : 'circle-btn-icon' }
+               <div className='circle-btn' onClick={() => navigate(`${startLink}/Projects`)} >
+                  <Box className={location.pathname === `${startLink}/Projects` ? 'circle-btn-icon pageActive' : 'circle-btn-icon' }
                    bgcolor='action.disabledBackground' color='text.secondary' >
                    <FaBriefcase />
                   </Box>
                   <div className='circle-btn-text'>
-                     <Typography  variant='h6'> Portfolio </Typography>
+                     <Typography  variant='h6'> Projects </Typography>
                   </div>
                </div>
 

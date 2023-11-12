@@ -18,7 +18,7 @@ const NavbarBottom = () => {
          case `${startLink}/about`:
             setValue(1)
             break;
-         case `${startLink}/Portfolio`:
+         case `${startLink}/Projects`:
             setValue(2)
             break;
          case `${startLink}/contact`:
@@ -46,7 +46,7 @@ const NavbarBottom = () => {
             >
                <BottomNavigationAction sx={{color:'#ffffff'}} link={`${startLink}/`} label="Home" icon={<FaHome />} />
                <BottomNavigationAction sx={{color:'#ffffff'}} link={`${startLink}/about`} label="Abute Me" icon={<FaUser />} />
-               <BottomNavigationAction sx={{color:'#ffffff'}} link={`${startLink}/Portfolio`} label="Portfolio" icon={<FaBriefcase />} />
+               <BottomNavigationAction sx={{color:'#ffffff'}} link={`${startLink}/Projects`} label="Projects" icon={<FaBriefcase />} />
                <BottomNavigationAction sx={{color:'#ffffff'}} link={`${startLink}/contact`} label="Contact" icon={<FaEnvelopeOpen />} />
             </BottomNavigation>
          </Box>
