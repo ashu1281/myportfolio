@@ -75,23 +75,23 @@ const Projects= ()=> {
           All
         </Typography>
 
-        <Typography  className={`project-type ${filtertype === 'CSS' && 'project-type-active'}`}
+        {/* <Typography  className={`project-type ${filtertype === 'Electron' && 'project-type-active'}`}
           onClick={()=> {
-          setRepos(myProjects.filter(e => !e.Language.includes('Javascript', 'React')));
-          setFiltertype('CSS')
+          setRepos(myProjects.filter(e => !e.Language.includes('Electron')));
+          setFiltertype('Electron')
           }} >
-            CSS
+            Electron
+        </Typography> */}
+        <Typography  className={`project-type ${filtertype === 'Electron' && 'project-type-active'}`}
+          value='Electron' onClick={(e)=> handelFilter(e) }>
+            Electron
         </Typography>
-
 
         <Typography  className={`project-type ${filtertype === 'React' && 'project-type-active'}`}
           value='React' onClick={(e)=> handelFilter(e) }>
             React
         </Typography>
-        <Typography  className={`project-type ${filtertype === 'Javascript' && 'project-type-active'}`}
-          value='Javascript'onClick={(e)=> handelFilter(e) } >
-            Javascript
-        </Typography>
+     
       </Stack>
 
 

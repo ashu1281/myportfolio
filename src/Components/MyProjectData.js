@@ -1,5 +1,3 @@
-import { SvgIcon } from '@mui/material';
-import materialUi from '../Images/materialUi.png';
 import electronPorjectImg from '../Images/pojectImages/electronPoject.png';
 import portfolioImg from '../Images/pojectImages/portfolio.png';
 import {
@@ -8,7 +6,6 @@ import {
 	FaGitAlt,
 	FaGithub,
 	FaHtml5,
-	FaLanguage,
 	FaLaptopCode,
 	FaNode,
 	FaReact,
@@ -20,7 +17,9 @@ import {
 	SiExpress,
 	SiMongodb,
 	SiMui,
-	SiVisualstudiocode
+	SiVisualstudiocode,
+	SiC,
+	SiCplusplus
 } from 'react-icons/si';
 import { GiOpenBook } from 'react-icons/gi';
 
@@ -39,8 +38,8 @@ export const myPersonalInfo = [
 ];
 
 export const skills = [
-	{ id: 201, title: 'C', icon: <FaLanguage />, color: '#A8B9CC' },
-	{ id: 202, title: 'C++', icon: <FaLanguage />, color: '#00599C' },
+	{ id: 201, title: 'C', icon: <SiC />, color: '#659ad2' },
+	{ id: 202, title: 'C++', icon: <SiCplusplus />, color: '#06f' },
 	{ id: 203, title: 'SQL', icon: <FaDatabase />, color: '#F29111' },
 	{ id: 204, title: 'HTML', icon: <FaHtml5 />, color: '#e56229' },
 	{ id: 205, title: 'CSS', icon: <FaCss3Alt />, color: '#007FFF' },
@@ -65,7 +64,7 @@ export const Education = [
 	{
 		date: 'Jun/2016 - March/2017',
 		title: 'SSC',
-		organization: 'BhagatSingh Vidalaya, Ashta',
+		organization: 'BhagatSingh Vidyalaya, Ashta',
 		icon: <GiOpenBook />,
 	},
 	{
@@ -104,9 +103,9 @@ export const myProjects = [
 		img: electronPorjectImg,
 		link: '',
 		githubLink: 'https://www.electronjs.org/',
-		Language: ['HTML', 'CSS', 'Material Ui', 'Javascript', 'React', 'Electron'],
+		Language: ['Electron', 'React'],
 		description:
-		'Desktop SCADA application created using Electron.js and React.js. It is an online store for selling wristwatches, developed using Next.js 13 app directory, static & dynamic metadata, shopping cart, favorite list, with notifications toast.',
+		'Desktop SCADA application created using Electron.js and React.js. This application is used to monitor and control the devices connected to the server.',
 	},
 	{
 		id: 302,
@@ -114,7 +113,7 @@ export const myProjects = [
 		img: portfolioImg,
 		link: "https://ashishgaikwad.me",
 		githubLink:"https://github.com/ashu1281/myportfolio",
-		Language: ['HTML', 'CSS', 'Material Ui', 'Javascript', 'React'],
+		Language: ['React'],
 		description:
 					""
 		},
