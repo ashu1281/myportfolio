@@ -11,19 +11,23 @@ import {
 } from '@mui/lab';
 
 import 'animate.css';
-import { timelineData } from './MyProjectData';
+import { Education , Experience} from './MyProjectData';
+
 
 export default function Journey() {
+   const handleClick = () => {
+      window.open('https://www.pratititech.com/', '_blank'); 
+    };
+
 	return (
 		<Fragment>
-			<Typography variant="h5" textTransform="uppercase" fontWeight={700} mb={2}>
-				Journey : 
-			</Typography>
-
-			<Timeline position="right" color="text.white" sx={{ px: 0, overflow: 'hidden' }}>
-				<Grid container alignItems='end'>
-               <Grid item xs={12} md={6}>
-                  {timelineData.map((item, index) => index <= (timelineData?.length/2 )&& (
+			<Timeline position="right" color="text.white" sx={{ px: 0, overflow: 'hidden' , mt:5}}>
+			<Grid container alignItems='baseline' spacing={4}>
+               <Grid item xs={12} md={7}>
+                  <Typography variant="h5" textTransform="uppercase" fontWeight={700} mb={2}>
+                     Education : 
+                  </Typography>
+                  {Education.map((item, index) => (
                      <TimelineItem
                         key={index}
                         sx={{
@@ -52,8 +56,11 @@ export default function Journey() {
                   ))}
 					</Grid>
 
-               <Grid item xs={12} md={6}>
-                  {timelineData.map((item, index) => index > (timelineData?.length/2 )&& (
+               <Grid item xs={12} md={5} >
+                  <Typography variant="h5" textTransform="uppercase" fontWeight={700} mb={2}>
+                     Experince : 
+                  </Typography>
+                  {Experience.map((item, index) => (
                      <TimelineItem
                         key={index}
                         sx={{
@@ -76,7 +83,19 @@ export default function Journey() {
                               {item.date}
                            </Typography>
                            <Typography variant="h6">{item.title}</Typography>
-                           <Typography variant="h6">{item.organization}</Typography>
+                           <Typography
+                              variant="h6"
+                              onClick={handleClick}
+                              sx={{
+                                 cursor: 'pointer',
+                                 '&:hover': {
+                                    textDecoration: 'underline',
+                                    color: '#018dff',
+                                 },
+                              }}
+                              >
+                              {item.organization}
+                           </Typography>
                         </TimelineContent>
                      </TimelineItem>
                   ))}

@@ -19,8 +19,12 @@ import {
 	SiElectron,
 	SiExpress,
 	SiMongodb,
+	SiMui,
+	SiVisualstudiocode
 } from 'react-icons/si';
 import { GiOpenBook } from 'react-icons/gi';
+
+
 export const startLink = '';
 
 export const myPersonalInfo = [
@@ -30,7 +34,7 @@ export const myPersonalInfo = [
 	{ id: 104, title: 'Nationality: ', info: 'Indian' },
 	{ id: 105, title: 'Langages: ', info: 'English, Hindi, Marathi' },
 	{ id: 106, title: 'Phone: ', info: '+91 9021823547' },
-	{ id: 107, title: 'Email: ', info: 'mr.ashishgg.com' },
+	{ id: 107, title: 'Email: ', info: 'mr.ashishgg@gmail.com' },
 	{ id: 108, title: 'Freelance: ', info: 'Available', color: '#01ef92' },
 ];
 
@@ -51,14 +55,13 @@ export const skills = [
 ];
 
 export const otherSkills = [
-    
-	// ...
-	{ id: 213, title: 'Material UI', icon: <SvgIcon><img src={materialUi} alt="Material UI" /></SvgIcon>, color: '#007FFF' },
+	{ id: 213, title: 'Material UI', icon: <SiMui />, color: 'rgb(0, 127, 255)' },
 	{ id: 214, title: 'Github', icon: <FaGithub /> },
 	{ id: 215, title: 'Git', icon: <FaGitAlt />, color: '#DE4C36' },
+	{ id: 216, title: 'VS Code', icon: <SiVisualstudiocode/>, color: '#0066b8' },
 ];
 
-export const timelineData = [
+export const Education = [
 	{
 		date: 'Jun/2016 - March/2017',
 		title: 'SSC',
@@ -74,17 +77,25 @@ export const timelineData = [
 	{
 		date: 'Aug/2019 - May/2023',
 		title: 'B.Tech in Computer Engineering',
-		organization: 'Govere College of Engineering, Jalgaon',
+		organization: 'Government College of Engineering, Jalgaon',
 		icon: <FaLaptopCode />,
 	},
+	
+];
+export const Experience = [
 	{
-		date: 'Jan/2023 - present',
+		date: 'Jan/2023 - April/2023',
+		title: 'Internship in C++ and C#.NET at,',
+		organization: 'PratitiTechnologies Pvt. Ltd, Pune',
+		icon: <GiOpenBook />,
+	},
+	{
+		date: 'Aug/2023 - present',
 		title: 'Software Engineer at,',
 		organization: 'PratitiTechnologies Pvt. Ltd, Pune',
 		icon: <FaToolbox />,
 	},
 ];
-
 
 export const myProjects = [
 	{
