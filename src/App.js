@@ -5,7 +5,7 @@ import Home from './Components/Home';
 import TogleTheme from './Components/TogleTheme';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, GlobalStyles } from '@mui/material';
 import About from './Components/About';
 import NavbarBottom from './Components/NavbarBottom';
 import NavigationLg from './Components/NavigationLg';
@@ -40,6 +40,20 @@ function App() {
     <ThemeProvider  theme={myTheme}>
       <CssBaseline />
         <TogleTheme toggleDark={toggleDark} settoggleDark={settoggleDark} />
+        <GlobalStyles
+            styles={{
+            "*::-webkit-scrollbar": {
+              width: "0.3em"
+            },
+            "*::-webkit-scrollbar-track": {
+              "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
+            },
+            "*::-webkit-scrollbar-thumb": {
+              backgroundColor: "rgba(0,0,0,.1)",
+              outline: "1px solid slategrey"
+            }
+            }}
+          />
         <NavigationLg />
         <Routes>
           <Route path='/' element={<Home/>} />
