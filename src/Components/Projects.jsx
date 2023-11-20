@@ -91,7 +91,10 @@ const Projects= ()=> {
           value='React' onClick={(e)=> handelFilter(e) }>
             React
         </Typography>
-     
+        <Typography  className={`project-type ${filtertype === '.Net' && 'project-type-active'}`}
+          value='.Net' onClick={(e)=> handelFilter(e) }>
+            .Net
+        </Typography>
       </Stack>
 
 

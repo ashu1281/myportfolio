@@ -1,5 +1,7 @@
-import electronPorjectImg from '../Images/pojectImages/electronPoject.png';
+import electronPorjectImg from '../Images/pojectImages/Electron_React.svg';
 import portfolioImg from '../Images/pojectImages/portfolio.png';
+import ticketstm from '../Images/pojectImages/Ticketstm.png';
+import library from '../Images/pojectImages/library.png';
 import {
 	FaCss3Alt,
 	FaDatabase,
@@ -109,12 +111,35 @@ export const myProjects = [
 	},
 	{
 		id: 302,
-		title: "My Portfolio",
+		title: "This Portfolio",
 		img: portfolioImg,
 		link: "https://ashishgaikwad.me",
 		githubLink:"https://github.com/ashu1281/myportfolio",
 		Language: ['React'],
 		description:
 					""
-		},
+	},
+	{
+		id: 303,
+		title: 'Tickets Management WebApp',
+		img: ticketstm,
+		link: 'https://ticketstm.vercel.app/',
+		githubLink: 'https://github.com/ashu1281/Ticket-Management-Webapplication-MERN-STACK',
+		Language: ['React'],
+		description:
+		'A user-friendly web application designed for efficient management of support tickets. Users can create, track, and update tickets, while agents and administrators collaborate to resolve issues. The app offers role-based access for secure interactions.',
+	},
+	{
+		id: 304,
+		title: "Library Management System",
+		img: library,
+		link: "",
+		githubLink:"https://github.com/ashu1281/Library-Management-System--final",
+		Language: ['.Net', 'C#', 'SQL Server'],
+		description:
+					`The Library Management System provides a user-friendly interface
+					that allows librarians to manage library resources such as to Manage
+					Books, Issue Books, Return Books, Manage Member’s and also keep
+					data of Members who have borrowed books.`
+	},
 	]
