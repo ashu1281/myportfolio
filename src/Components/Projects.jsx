@@ -50,7 +50,24 @@ const Projects= ()=> {
 
   return (
     <>
-    <Container sx={{my:{xs:'12%', lg:'70px'}}} component='section'>
+    <Container component='section' 
+      sx={{
+        my:{xs:'12%', lg:'70px'},
+        overflow: "auto", scrollbarWidth: "thin",
+        "&::-webkit-scrollbar, &::-webkit-scrollbar-horizontal": {
+            width: "2px",
+            height: "2px"
+        },
+        "&::-webkit-scrollbar-thumb, &::-webkit-scrollbar-thumb-horizontal": {
+            background: "grey",
+            borderRadius: "3px",
+        },
+        "&::-webkit-scrollbar-track, &::-webkit-scrollbar-track-horizontal": {
+            background: "#ddd",
+            borderRadius: "3px",
+        },
+      }}
+    >
       <Stack textTransform='uppercase' mb={6} >
 
         <Typography fontSize={{xs:'30px', lg:'100px'}} fontWeight="800"  letterSpacing={15}
@@ -91,6 +108,7 @@ const Projects= ()=> {
       <Grid container spacing={3} 
         component={motion.ul} variants={container} initial="hidden" animate="visible" 
         className='animate__animated animate__zoomIn' 
+        
       >
         {repos && repos.map(e =>
           <Grid item  xs={12} md={6} lg={4}  key={e?.id} sx={{position: 'relative', listStyle:'none'}}
