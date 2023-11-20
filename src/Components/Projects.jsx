@@ -74,19 +74,10 @@ const Projects= ()=> {
             }} >
           All
         </Typography>
-
-        {/* <Typography  className={`project-type ${filtertype === 'Electron' && 'project-type-active'}`}
-          onClick={()=> {
-          setRepos(myProjects.filter(e => !e.Language.includes('Electron')));
-          setFiltertype('Electron')
-          }} >
-            Electron
-        </Typography> */}
         <Typography  className={`project-type ${filtertype === 'Electron' && 'project-type-active'}`}
           value='Electron' onClick={(e)=> handelFilter(e) }>
             Electron
         </Typography>
-
         <Typography  className={`project-type ${filtertype === 'React' && 'project-type-active'}`}
           value='React' onClick={(e)=> handelFilter(e) }>
             React
@@ -97,10 +88,9 @@ const Projects= ()=> {
         </Typography>
       </Stack>
 
-
       <Grid container spacing={3} 
         component={motion.ul} variants={container} initial="hidden" animate="visible" 
-      className='animate__animated animate__zoomIn' 
+        className='animate__animated animate__zoomIn' 
       >
         {repos && repos.map(e =>
           <Grid item  xs={12} md={6} lg={4}  key={e?.id} sx={{position: 'relative', listStyle:'none'}}
