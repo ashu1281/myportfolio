@@ -131,7 +131,7 @@ export default function About() {
 
 					<Box display="flex" justifyContent={{ xs: 'center', lg: 'left' }}>
 						<Link
-							href="./files/Ashish_Gaikwad_Resume.pdf"
+							href="./files/Ashish_Gaikwad_resume.pdf"
 							target="_blank"
 							download
 							color="#ffffff"
