@@ -42,7 +42,7 @@ export const Home = () => {
 						justifyContent={{ xs: 'center', md: 'left' }}
 						p={{ xs: 2, md: 6 }}
 					>
-						<Grid item md={4} padding={0} height="100%">
+						{/* <Grid item md={4} padding={0} height="100%">
 							<Box display={{ xs: 'none', md: 'flex' }} height="100%">
 								<Card
 									sx={{
@@ -74,9 +74,9 @@ export const Home = () => {
 									}}
 								/>
 							</Box>
-						</Grid>
+						</Grid> */}
 
-						<Grid item md={8} mt={{ xs: 4, md: 0 }}>
+						<Grid item md={12} mt={{ xs: 4, md: 0 }}>
 							<Box>
 								<Typography
 									fontSize={{ xs: '25px', md: '50px' }}
