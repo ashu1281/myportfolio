@@ -76,7 +76,7 @@ export const Home = () => {
 							</Box>
 						</Grid> */}
 
-						<Grid item md={12} mt={{ xs: 4, md: 0 }}>
+						<Grid item md={12} mt={{ xs: 4, md: 0 }} paddingX={20} paddingRight={-5}>
 							<Box>
 								<Typography
 									fontSize={{ xs: '25px', md: '50px' }}
