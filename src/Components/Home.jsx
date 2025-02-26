@@ -1,11 +1,9 @@
-import React from 'react';
-import { Avatar, Card, CardMedia, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { Box, Container } from '@mui/system';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { startLink } from './MyProjectData';
 
-import myImage from '../Images/MyImages/styledcoat.png';
-import myImage2 from '../Images/MyImages/shortPassport.png';
 import '../Styles/Home.css';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';

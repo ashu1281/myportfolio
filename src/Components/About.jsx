@@ -12,7 +12,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 import myImage from '../Images/MyImages/shortPassport.png';
 
-import { myPersonalInfo, skills, otherSkills } from './MyProjectData';
+import { myPersonalInfo, technicalSkills, frameworks, tools } from './MyProjectData';
 import Journey from './Journey';
 import { FiDownload } from 'react-icons/fi';
 
@@ -153,7 +153,10 @@ export default function About() {
 			{/* ------------------------------------- Skills ------------------------------ */}
 			<Box mt={6} component="section">
 				<Typography variant="h5" textTransform="uppercase" fontWeight={700}>
-					Skills :
+					Skills:
+				</Typography>
+				<Typography variant="h5" fontWeight={600}>
+					Languages:
 				</Typography>
 
 				<Grid
@@ -166,7 +169,58 @@ export default function About() {
 					variants={container} initial="hidden" animate="visible"
 					className="container"
 				>
-					{skills?.map((skill, i) => (
+					{technicalSkills?.map((skill, i) => (
+						<Grid xs={6} sm={4} lg={3} key={skill?.id} sx={{listStyle:'none',flexGrow:'1 !important'}}  
+						component={motion.li} 
+						variants={item}
+						>
+							<Box
+								fontSize={60}
+								color={skill?.color || 'text.primary'}
+								bgcolor="action.hover"
+								paddingY="20px"
+								borderRadius="10px"
+								boxShadow={3}
+								sx={{
+									'&:hover': {
+										boxShadow: '0 4px 8px 0 rgb(1 141 255 / 42%)',
+										transform: 'translateY(-10px)',
+										transition: 'all .5s',
+										transitionDelay: 80 * i,
+									},
+								}}
+							>
+								{skill?.icon}
+								<Typography
+									variant="body1"
+									fontWeight={700}
+									sx={{ userSelect: 'none' }}
+								>
+									{skill?.title}
+								</Typography>
+							</Box>
+						</Grid>
+					))}
+				</Grid>
+			</Box>
+
+			<Divider sx={{ bgcolor: 'Divider', width: '50%', mx: 'auto', my: 4 }} />
+			<Box mt={6} component="section">
+				<Typography variant="h5" fontWeight={600}>
+				Frameworks & Libraries:
+				</Typography>
+
+				<Grid
+					container
+					spacing={2} 
+					my={4}
+					color="text.primary"
+					textAlign="center"
+	                component={motion.ul} 
+					variants={container} initial="hidden" animate="visible"
+					className="container"
+				>
+					{frameworks?.map((skill, i) => (
 						<Grid xs={6} sm={4} lg={3} key={skill?.id} sx={{listStyle:'none',flexGrow:'1 !important'}}  
 						component={motion.li} 
 						variants={item}
@@ -204,8 +258,8 @@ export default function About() {
 			<Divider sx={{ bgcolor: 'Divider', width: '50%', mx: 'auto', my: 4 }} />
 
 			<Box my={6}>
-				<Typography variant="h5" textTransform="uppercase" fontWeight={700} mb={2}>
-					Other Skills :
+				<Typography variant="h5" fontWeight={600} mb={2}>
+				Tools:
 				</Typography>
 
 				<Box
@@ -215,7 +269,7 @@ export default function About() {
 					flexWrap="wrap"
 					textAlign="center"
 				>
-					{otherSkills?.map((skill, i) => (
+					{tools?.map((skill, i) => (
 						<Box
 							key={skill?.id}
 							fontSize={60}

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { Box, Card, CardMedia, Container, Grid, Stack, Typography } from '@mui/material'
+import { Box, Card, CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
+import React, { useState } from 'react';
 
-import '../Styles/Projects.css'
 import 'animate.css';
+import '../Styles/Projects.css';
 
 // import axios from 'axios'
-import {myProjects} from './MyProjectData'
 import { motion } from 'framer-motion';
+import { myProjects , projectTypes} from './MyProjectData';
 
 
 
@@ -43,8 +43,8 @@ const Projects= ()=> {
 
 
   const handelFilter = (e) =>{
-    setRepos(myProjects?.filter(v => v?.Language?.includes(e.currentTarget.attributes?.value?.value)));
-    setFiltertype(e.currentTarget.attributes?.value?.value)
+    setRepos(myProjects?.filter(v => v?.Language?.includes(e)));
+    setFiltertype(e)
   }
 
 
@@ -67,27 +67,23 @@ const Projects= ()=> {
       </Stack>
 
 
-      <Stack direction='row' gap={{xs:2, md:4}} justifyContent='center' mt={10} mb={4} >
-        <Typography  className={`project-type ${filtertype === 'All' && 'project-type-active'}`}
-          onClick={()=> {setRepos(myProjects);
-            setFiltertype('All')
-            }} >
-          All
-        </Typography>
-        <Typography  className={`project-type ${filtertype === 'Electron' && 'project-type-active'}`}
-          value='Electron' onClick={(e)=> handelFilter(e) }>
-            Electron
-        </Typography>
-        <Typography  className={`project-type ${filtertype === 'React' && 'project-type-active'}`}
-          value='React' onClick={(e)=> handelFilter(e) }>
-            React
-        </Typography>
-        <Typography  className={`project-type ${filtertype === '.Net' && 'project-type-active'}`}
-          value='.Net' onClick={(e)=> handelFilter(e) }>
-            .Net
-        </Typography>
+      <Stack direction="row" gap={{ xs: 2, md: 4 }} justifyContent="center" mt={10} mb={4}>
+        {projectTypes.map((type) => (
+          <Typography
+            key={type}
+            className={`project-type ${filtertype === type && 'project-type-active'}`}
+            onClick={() => {
+              if (type === 'All') {
+                setRepos(myProjects);
+              }
+              setFiltertype(type);
+              if (type !== 'All') handelFilter(type);
+            }}
+          >
+            {type}
+          </Typography>
+        ))}
       </Stack>
-
       <Grid container spacing={3} 
         component={motion.ul} variants={container} initial="hidden" animate="visible" 
         className='animate__animated animate__zoomIn' 
