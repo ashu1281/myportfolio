@@ -1,5 +1,5 @@
 import { Box, Card, CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import 'animate.css';
 import '../Styles/Projects.css';
@@ -29,8 +29,8 @@ const Projects= ()=> {
 		visible: { y: 0, opacity: 1 },
   };
 
-  const [open, setOpen] = useState(false);
-  const [EProjectDetails, setProjectDetails] = useState({});
+  // const [open, setOpen] = useState(false);
+  // const [EProjectDetails, setProjectDetails] = useState({});
 
 
   const handleOpenLink=(e)=>{
@@ -94,7 +94,10 @@ const Projects= ()=> {
             component={motion.li} variants={item}
           >
             <Card className="flip-card"  component={motion.div}
-              onClick={()=> {setOpen(true); setProjectDetails(e); handleOpenLink(e)}} >
+              onClick={()=> {
+                // setOpen(true); setProjectDetails(e); 
+              
+              handleOpenLink(e)}} >
 
               <Box className="flip-card-inner">
                 {/* when hover over card show next box */}

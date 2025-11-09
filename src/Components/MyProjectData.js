@@ -25,7 +25,6 @@ import {
 	SiVisualstudiocode
 } from 'react-icons/si';
 import electronPorjectImg from '../Images/pojectImages/Electron_React.svg';
-import library from '../Images/pojectImages/library.png';
 import portfolioImg from '../Images/pojectImages/portfolio.png';
 import ticketstm from '../Images/pojectImages/Ticketstm.png';
 

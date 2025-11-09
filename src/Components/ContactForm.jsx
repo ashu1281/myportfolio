@@ -8,9 +8,10 @@ import { IoPaperPlane } from "react-icons/io5";
  * A form component for sending messages.
  * @returns {JSX.Element} The ContactForm component.
  */
+// eslint-disable-next-line
 export default function ContactForm() {
    const form = useRef();
-   const [errorState, setErrorState] = useState({name: false, email: false, message: false});
+   // const [errorState, setErrorState] = useState({name: false, email: false, message: false});
    const [message, setMessage] = useState('');
    const [messageColor, setMessageColor] = useState('error.main');
    const sendEmail = (e) => {
@@ -20,13 +21,13 @@ export default function ContactForm() {
       for (let name of formData.keys()) {
         const input = form.current.elements[name];
         if (input.required && !input.value) {
-          setErrorState(prevState => ({...prevState, [name]: true}));
+         //  setErrorState(prevState => ({...prevState, [name]: true}));
           setMessageColor('error.main');
           setMessage('Please fill all required fields.');
           return;
         }
         if (name === 'user_email' && !validateEmail(input.value)) {
-          setErrorState(prevState => ({...prevState, [name]: true}));
+         //  setErrorState(prevState => ({...prevState, [name]: true}));
           setMessageColor('error.main');
           setMessage('Please enter a valid email address.');
           return;
@@ -35,7 +36,7 @@ export default function ContactForm() {
       }
       setMessageColor('success.main');
       setMessage('Message was sent. Thank you for contacting me.');
-      setErrorState({name: false, email: false, message: false});
+      // setErrorState({name: false, email: false, message: false});
       form.current.reset();
    };
 
