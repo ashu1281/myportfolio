@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Home from './Components/Home';
@@ -12,6 +12,8 @@ import NavigationLg from './Components/NavigationLg';
 import Contact from './Components/Contact';
 import Projects from './Components/Projects';
 import Showcase from './Components/Showcase';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 
 
 
@@ -23,26 +25,28 @@ function App() {
     // Theme settings
     palette: {
       mode: toggleDark ? "dark" : "light",
-      primary:{main:'#018dff'},
-      text:{disabled:'#018dff'}
+      primary: { main: '#018dff' },
+      text: { disabled: '#018dff' }
     },
     components: {
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundImage: "linear-gradient( rgba(255, 255, 255, 0.16), rgb(1 141 255 / 43%), rgba(255, 255, 255, 0.16))"
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundImage: "linear-gradient( rgba(255, 255, 255, 0.16), rgb(1 141 255 / 43%), rgba(255, 255, 255, 0.16))"
+          },
         },
       },
     },
-  },
   });
 
   return (
-    <ThemeProvider  theme={myTheme}>
-      <CssBaseline />
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+      <ThemeProvider theme={myTheme}>
+        <CssBaseline />
         <TogleTheme toggleDark={toggleDark} settoggleDark={settoggleDark} />
         <GlobalStyles
-            styles={{
+          styles={{
             "*::-webkit-scrollbar": {
               width: "0.3em"
             },
@@ -53,21 +57,20 @@ function App() {
               backgroundColor: "rgba(0,0,0,.1)",
               outline: "1px solid slategrey"
             }
-            }}
-          />
+          }}
+        />
         <NavigationLg />
         <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/about' element={<About/>} />
-          <Route path='/Projects' element={<Projects/>} />
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/projects' element={<Projects />} />
           <Route path="/showcase" element={<Showcase />} />
-          <Route path='/contact' element={<Contact/>} />
-          <Route path='*' element={<Home/>} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='*' element={<Home />} />
         </Routes>
-        <NavbarBottom/>
-  </ThemeProvider>
+      </ThemeProvider>
 
-
+    </LocalizationProvider>
   );
 }
 
