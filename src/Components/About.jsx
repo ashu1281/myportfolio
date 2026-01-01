@@ -78,7 +78,7 @@ export default function About() {
 								width: '300px',
 								height: '320px',
 								border: '4px solid #252525',
-								objectFit: 'top',
+								objectFit: 'cover',
 							}}
 						/>
 					</Box>
@@ -131,7 +131,7 @@ export default function About() {
 
 					<Box display="flex" justifyContent={{ xs: 'center', lg: 'left' }}>
 						<Link
-							href="./files/Ashish_Gaikwad_resume.pdf"
+							href="./files/Ashish_Gaikwad_Resume_2026.pdf"
 							target="_blank"
 							download
 							color="#ffffff"
@@ -141,7 +141,7 @@ export default function About() {
 								<Box className="project-btn-icon">
 									<FiDownload />{' '}
 								</Box>
-								<Box className="project-btn-text"> Download CV </Box>
+								<Box className="project-btn-text"> Download Resume </Box>
 							</Box>
 						</Link>
 					</Box>

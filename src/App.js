@@ -11,6 +11,7 @@ import NavbarBottom from './Components/NavbarBottom';
 import NavigationLg from './Components/NavigationLg';
 import Contact from './Components/Contact';
 import Projects from './Components/Projects';
+import Showcase from './Components/Showcase';
 
 
 
@@ -59,6 +60,7 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/about' element={<About/>} />
           <Route path='/Projects' element={<Projects/>} />
+          <Route path="/showcase" element={<Showcase />} />
           <Route path='/contact' element={<Contact/>} />
           <Route path='*' element={<Home/>} />
         </Routes>

@@ -28,15 +28,15 @@ const Contact = () => {
       </Stack>
 
 
-        <Box  >
+        <Box sx={{display:'flex', justifyContent:'center'}}>
           <Typography  fontSize={{xs:'25px', lg:'25px'}}  textAlign={{xs:'center', lg:'left'}} mb={3} >
             Let's Connect!
           </Typography>
         </Box>
 
 
-      <Grid  container>
-        <Grid item  lg={4}  >
+      <Grid container sx={{display:'flex', justifyContent:'center'}}>
+        <Grid item sx={{maxWidth:"60%", display:'flex', justifyContent:'center'}}  >
           <Stack  textTransform='capitalize' height='100%' direction='column' justifyContent='space-between'>
             <Typography fontWeight="700" fontSize='15px'  textAlign='justify' mb={4}  >
               Whether you're interested in my resume or looking to collaborate on freelance projects, feel free to reach out. I'm always open to discussing new opportunities, sharing creative ideas, and being a part of your vision.
@@ -57,8 +57,8 @@ const Contact = () => {
               <Stack fontSize={30} textAlign='left' >
                 <Typography> Mail Me </Typography>
 
-                <Link href='mailto:mr.ashishgg@gmail.com' underline="hover"  sx={{color:'text.praimary', textTransform: 'lowercase'}}   fontSize={15}>
-                  mr.ashishgg@gmail.com
+                <Link href='mailto:gaikwadashish628@gmail.com' underline="hover"  sx={{color:'text.praimary', textTransform: 'lowercase'}}   fontSize={15}>
+                  gaikwadashish628@gmail.com
                 </Link>
               </Stack>
             </Stack>
@@ -71,18 +71,15 @@ const Contact = () => {
                 <Link href='tel:+919021823547' underline="hover"  sx={{color:'text.praimary'}} >
                 +91 902 182 3547
                 </Link>
-                <Link href='tel:+917066130529' underline="hover" sx={{color:'text.praimary'}} >
+                {/* <Link href='tel:+917066130529' underline="hover" sx={{color:'text.praimary'}} >
                 +91 706 613 0529
-                </Link>
+                </Link> */}
               </Stack>
             </Stack>
 
             <Stack display='flex' flexDirection='row' alignItems='center' gap={2}  mb={3}
               justifyContent={{xs:'center', lg:'left'}} className='animate__animated animate__zoomIn'>
 
-              <Link href='https://www.facebook.com/ashish.gaikwad.96199344/' target='_blank' >
-                <Box className='social-icons' bgcolor='action.disabledBackground'  > <FaFacebookF /> </Box>
-              </Link>
 
               <Link href='https://www.linkedin.com/in/ashishggaikwad/' target='_blank' >
                 <Box className='social-icons' bgcolor='action.disabledBackground'  > <FaLinkedinIn /> </Box>
@@ -105,9 +102,9 @@ const Contact = () => {
           </Stack>
         </Grid>
 
-        <Grid item lg={7}>
+        {/* <Grid item lg={7}>
           <ContactForm />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   )

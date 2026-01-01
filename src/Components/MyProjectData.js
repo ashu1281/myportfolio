@@ -27,22 +27,9 @@ import {
 import electronPorjectImg from '../Images/pojectImages/Electron_React.svg';
 import portfolioImg from '../Images/pojectImages/portfolio.png';
 import ticketstm from '../Images/pojectImages/Ticketstm.png';
+import HighchartLogo from '../Images/pojectImages/highChartLogo.png'
+import AmChartsLogo from "../Images/pojectImages/amchartsLogo.png"
 
-const AmChartsIcon = () => (
-	<svg
-	  width="24"
-	  height="24"
-	  viewBox="0 0 24 24"
-	  fill="none"
-	  xmlns="http://www.w3.org/2000/svg"
-	>
-	  <rect x="2" y="12" width="3" height="10" fill="#00A3E0" />
-	  <rect x="7" y="8" width="3" height="14" fill="#00A3E0" />
-	  <rect x="12" y="4" width="3" height="18" fill="#00A3E0" />
-	  <rect x="17" y="2" width="3" height="20" fill="#00A3E0" />
-	</svg>
-  );
-  
 export const startLink = '';
 
 export const myPersonalInfo = [
@@ -52,40 +39,59 @@ export const myPersonalInfo = [
 	{ id: 104, title: 'Nationality: ', info: 'Indian' },
 	{ id: 105, title: 'Langages: ', info: 'English, Hindi, Marathi' },
 	{ id: 106, title: 'Phone: ', info: '+91 9021823547' },
-	{ id: 107, title: 'Email: ', info: 'mr.ashishgg@gmail.com' },
+	{ id: 107, title: 'Email: ', info: 'gaikwadashish628@gmail.com' },
 	// { id: 108, title: 'Freelance: ', info: 'Available', color: '#01ef92' },
 ];
 
 export const technicalSkills = [
 	{ id: 201, title: 'C', icon: <SiC />, color: '#A8B9CC' },
-  { id: 202, title: 'C++', icon: <SiCplusplus />, color: '#00599C' },
-  { id: 203, title: 'Java', icon: <FaJava />, color: '#ED8B00' },
-  { id: 204, title: 'HTML', icon: <FaHtml5 />, color: '#E34F26' },
-  { id: 205, title: 'CSS', icon: <FaCss3Alt />, color: '#1572B6' },
-  { id: 206, title: 'JavaScript', icon: <DiJavascript1 />, color: '#F7DF1E' },
-  { id: 207, title: 'TypeScript', icon: <SiTypescript />, color: '#3178C6' },
-//   { id: 208, title: 'SQL', icon: <FaDatabase />, color: '#F29111' },
-	
+	{ id: 202, title: 'C++', icon: <SiCplusplus />, color: '#00599C' },
+	{ id: 203, title: 'Java', icon: <FaJava />, color: '#ED8B00' },
+	{ id: 204, title: 'HTML', icon: <FaHtml5 />, color: '#E34F26' },
+	{ id: 205, title: 'CSS', icon: <FaCss3Alt />, color: '#1572B6' },
+	{ id: 206, title: 'JavaScript', icon: <DiJavascript1 />, color: '#F7DF1E' },
+	{ id: 207, title: 'TypeScript', icon: <SiTypescript />, color: '#3178C6' },
+	//   { id: 208, title: 'SQL', icon: <FaDatabase />, color: '#F29111' },
+
 ];
 export const frameworks = [
-	{ id: 208, title: 'Angular', icon: <FaAngular />, color: '#DD0031' },
 	{ id: 209, title: 'React.js', icon: <FaReact />, color: '#00CEF2' },
+	{ id: 208, title: 'Angular', icon: <FaAngular />, color: '#DD0031' },
 	{ id: 210, title: 'Electron.js', icon: <SiElectron />, color: '#47848F' },
 	{ id: 211, title: 'Figma', icon: <FaFigma />, color: '#F24E1E' },
-	{ id: 212, title: 'Angular Material UI', icon: <SiAngular />, color: '#DD0031' },
 	{ id: 213, title: 'React Material UI', icon: <SiMui />, color: 'rgb(0, 127, 255)' },
-	{ id: 214, title: 'amCharts', icon: <AmChartsIcon />, color: '#00A3E0' },
-	{ id: 215, title: 'Chart.js', icon: <SiChartdotjs />, color: '#FF6384' },
-  ];
+	{ id: 212, title: 'Angular Material UI', icon: <SiAngular />, color: '#DD0031' },
+	{ id: 214, title: 'amCharts', 
+		icon: (
+			<img
+				src={AmChartsLogo}
+				alt="AmCharts"
+				style={{ width: 100, height: 44 , marginLeft:"-10px"}}
+			/>
+		), color: '#00A3E0' },
+	{
+		id: 215,
+		title: 'HighCharts',
+		icon: (
+			<img
+				src={HighchartLogo}
+				alt="HighCharts"
+				style={{ width: 44, height: 44 }}
+			/>
+		),
+		color: '#FF6384',
+	},
+
+];
 
 
-  export const tools = [
+export const tools = [
 	{ id: 215, title: 'Git', icon: <FaGitAlt />, color: '#DE4C36' },
 	{ id: 214, title: 'GitHub', icon: <FaGithub /> },
 	{ id: 217, title: 'Bitbucket', icon: <FaBitbucket />, color: '#0052CC' },
 	{ id: 218, title: 'Jira', icon: <SiJira />, color: '#0052CC' },
 	{ id: 216, title: 'VS Code', icon: <SiVisualstudiocode />, color: '#0066b8' },
-  ];
+];
 
 export const Education = [
 	{
@@ -106,11 +112,11 @@ export const Education = [
 		organization: 'Government College of Engineering, Jalgaon',
 		icon: <FaLaptopCode />,
 	},
-	
+
 ];
 export const Experience = [
 	{
-		date: 'Jan/2023 - April/2023',
+		date: 'Jan/2023 - Jul/2023',
 		title: 'Internship in Web Development at,',
 		organization: 'PratitiTechnologies Pvt. Ltd, Pune',
 		icon: <GiOpenBook />,
@@ -136,17 +142,17 @@ export const myProjects = [
 		githubLink: 'https://www.electronjs.org/',
 		Language: ['Electron', 'React'],
 		description:
-		'Desktop SCADA application created using Electron.js and React.js. This application is used to monitor and control the devices connected to the server.',
+			'Desktop SCADA application created using Electron.js and React.js. This application is used to monitor and control the devices connected to the server.',
 	},
 	{
 		id: 302,
 		title: "This Portfolio",
 		img: portfolioImg,
 		link: "https://ashishgaikwad.me",
-		githubLink:"https://github.com/ashu1281/myportfolio",
+		githubLink: "https://github.com/ashu1281/myportfolio",
 		Language: ['React'],
 		description:
-					""
+			""
 	},
 	{
 		id: 303,
@@ -156,7 +162,7 @@ export const myProjects = [
 		githubLink: 'https://github.com/ashu1281/Ticket-Management-Webapplication-MERN-STACK',
 		Language: ['React'],
 		description:
-		'A user-friendly web application designed for efficient management of support tickets. Users can create, track, and update tickets, while agents and administrators collaborate to resolve issues. The app offers role-based access for secure interactions.',
+			'A user-friendly web application designed for efficient management of support tickets. Users can create, track, and update tickets, while agents and administrators collaborate to resolve issues. The app offers role-based access for secure interactions.',
 	},
 	// {
 	// 	id: 304,
@@ -171,4 +177,4 @@ export const myProjects = [
 	// 				Books, Issue Books, Return Books, Manage Member’s and also keep
 	// 				data of Members who have borrowed books.`
 	// },
-	]
+]
