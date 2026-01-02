@@ -131,50 +131,74 @@ export const Experience = [
 
 
 
-export const projectTypes = ['All', 'Angular', 'React'];
+export const projectTypes = ['All', 'React'];
 
 export const myProjects = [
+	
 	{
-		id: 301,
-		title: 'Scada Application',
-		img: electronPorjectImg,
+		id: 306,
+		title: 'Solar Energy Monitoring Application',
+		img: null, // add image
 		link: '',
-		githubLink: 'https://www.electronjs.org/',
-		Language: ['Electron', 'React'],
+		githubLink: '',
+		Language: ['React', 'Redux', 'Material-UI', 'Highcharts'],
 		description:
-			'Desktop SCADA application created using Electron.js and React.js. This application is used to monitor and control the devices connected to the server.',
+			'Enterprise dashboard application for monitoring solar plant performance. Tracks 12+ KPIs such as generation, efficiency, losses, and availability using real-time and historical data.',
 	},
+
 	{
-		id: 302,
-		title: "This Portfolio",
-		img: portfolioImg,
-		link: "https://ashishgaikwad.me",
-		githubLink: "https://github.com/ashu1281/myportfolio",
-		Language: ['React'],
+		id: 305,
+		title: 'Social Platform for Musicians',
+		img: null, // add image
+		link: '',
+		githubLink: '',
+		Language: ['React', 'Redux', 'Spring Boot', 'WebSocket'],
 		description:
-			""
+			'Real-time collaboration platform for musicians supporting live streaming, interactive posts, and media sharing for 1,000+ users.',
+	},
+
+	{
+		id: 304,
+		title: 'Jewelry Production Planning System',
+		img: null, // add image
+		link: '',
+		githubLink: '',
+		Language: ['React', 'Redux', 'Spring Boot', 'AmCharts'],
+		description:
+			'Production planning system handling up to 20K orders per day with a custom calendar for day-wise resource allocation, improving scheduling efficiency by 20–25%.',
 	},
 	{
 		id: 303,
-		title: 'Tickets Management WebApp',
+		title: 'SCADA Desktop Application (POC)',
+		img: electronPorjectImg,
+		link: '',
+		// githubLink: 'https://www.electronjs.org/',
+		Language: ['Electron', 'React', 'Material-UI'],
+		description:
+			'Desktop SCADA POC application built using Electron.js and React to monitor 40+ industrial parameters such as voltage, current, and system status in real time.',
+	},
+
+	{
+		id: 302,
+		title: 'Personal Portfolio',
+		img: portfolioImg,
+		link: 'https://ashishgaikwad.me',
+		rlink: 'https://ashishgaikwad.me',
+		githubLink: 'https://github.com/ashu1281/myportfolio',
+		Language: ['React', 'Material-UI'],
+		description:
+			'Personal portfolio showcasing projects, skills, and experience with a clean UI, reusable components, and responsive design.',
+	},
+
+	{
+		id: 301,
+		title: 'Tickets Management Web Application',
 		img: ticketstm,
 		link: 'https://ticketstm.vercel.app/',
+		rlink: 'https://ticketstm.vercel.app/',
 		githubLink: 'https://github.com/ashu1281/Ticket-Management-Webapplication-MERN-STACK',
 		Language: ['React'],
 		description:
-			'A user-friendly web application designed for efficient management of support tickets. Users can create, track, and update tickets, while agents and administrators collaborate to resolve issues. The app offers role-based access for secure interactions.',
+			'A role-based ticket management system where users can create, track, and update support tickets, and admins can manage ticket workflows efficiently.',
 	},
-	// {
-	// 	id: 304,
-	// 	title: "Library Management System",
-	// 	img: library,
-	// 	link: "",
-	// 	githubLink:"https://github.com/ashu1281/Library-Management-System--final",
-	// 	Language: ['.Net', 'C#', 'SQL Server'],
-	// 	description:
-	// 				`The Library Management System provides a user-friendly interface
-	// 				that allows librarians to manage library resources such as to Manage
-	// 				Books, Issue Books, Return Books, Manage Member’s and also keep
-	// 				data of Members who have borrowed books.`
-	// },
-]
+];

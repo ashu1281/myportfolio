@@ -1,119 +1,193 @@
-:root{
-   --mainPraimary: #018dff
- }
-
-.project-Parent{
-   position: relative  ;
+:root {
+  --mainPraimary: #018dff;
 }
 
+/* ===================================================== */
+/* FILTER TABS */
+/* ===================================================== */
 
-
-.project-Data{
-   display: none;
-   position:absolute ;
-   top: 0%;
-   left: 0%;
-   background-color: var(--mainPraimary);
-   transition: all .3s;
+.project-type {
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
 }
 
-
-
-.project-Parent:hover .project-Data{
-   display: flex;
+.project-type:hover,
+.project-type-active {
+  color: var(--mainPraimary);
+  transform: scale(1.1);
 }
 
+/* ===================================================== */
+/* PROJECT CARD */
+/* ===================================================== */
 
-
-
-
-
-/* --------------------------------------------------- */
-
-.project-type{
-
-   font-size: 25px !important;
-   font-weight: 700 !important;
-   cursor: pointer;
+.project-card {
+  background: #0f1720;
+  border-radius: 12px;
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.project-type:hover{
-   color: var(--mainPraimary) ;
-   transform: scale(1.1);
+/* Smooth lift on hover */
+.project-card:hover {
+  transform: translateY(-6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
 
-
-.project-type-active{
-   color: var(--mainPraimary) ;
-   transform: scale(1.1);
-}
-
-
-
-
-
-/* ---------------------------------------------------------------- */
+/* ===================================================== */
+/* FLIP CARD (IMAGE AREA ONLY) */
+/* ===================================================== */
 
 .flip-card {
-   /* background-color: transparent; */
-   height: 220px;
-   border-radius: 4px;
-   perspective: 1000px; /* Remove this if you don't want the 3D effect */
-   cursor: pointer;
+  height: 220px;
+  border-radius: 10px;
+  perspective: 1000px;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-/* This container is needed to position the front and back side */
+/* Inner wrapper */
 .flip-card-inner {
-   width: 100%;
-   height: 100%;
-   text-align: center;
-   transition: transform 0.8s;
-   transform-style: preserve-3d;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease;
 }
 
-/* Do an horizontal flip when you move the mouse over the flip box container */
+/* Flip on hover */
 .flip-card:hover .flip-card-inner {
-   transform: rotateX(180deg);
+  transform: rotateY(180deg);
 }
 
-/* Position the front and back side */
-.flip-card-front, .flip-card-back {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   -webkit-backface-visibility: hidden; /* Safari */
-   backface-visibility: hidden;
-}
-
-
-/* Style the back side */
+/* Front & Back common */
+.flip-card-front,
 .flip-card-back {
-   background-color: var(--mainPraimary) ;  /*  dodgerblue; */
-   transform: rotateX(180deg);
-
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 10px;
 }
 
+/* ---------------- FRONT (IMAGE) ---------------- */
 
-/* ------------------------------------------ */
-.portfolio-card img{
-   -webkit-transform: translateY(0);
-   transform: translateY(0);
-
-   -webkit-transition: 7s ease-out;
-   transition: 7s ease-out;
-   
-   transition-delay: 1s;
-
-   object-position: top
+.flip-card-front {
+  background-color: #000;
 }
 
-.portfolio-card img:hover{
-   transform: translateY(calc(-100% + 300px));
-   -webkit-transform: translateY(calc(-100% + 300px));
-   -moz-transform: translateY(calc(-100% + 300px));
-   -ms-transform: translateY(calc(-100% + 300px));
-   -o-transform: translateY(calc(-100% + 300px));
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+}
+
+/* ---------------- BACK (DESCRIPTION) ---------------- */
+
+.flip-card-back {
+  background: linear-gradient(
+    135deg,
+    var(--mainPraimary),
+    #003b73
+  );
+  transform: rotateY(180deg);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 16px;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Description text */
+.flip-card-back p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* ===================================================== */
+/* DESCRIPTION ONLY (NO IMAGE CASE) */
+/* ===================================================== */
+
+.description-only {
+  min-height: 220px;
+  border-radius: 10px;
+  padding: 16px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: #e5e7eb;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ===================================================== */
+/* TECH CHIPS */
+/* ===================================================== */
+
+.tech-chip {
+  display: inline-block;
+  font-size: 12px;
+  padding: 4px 12px;
+  margin: 4px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* ===================================================== */
+/* PROJECT LINKS (LIVE / GITHUB) */
+/* ===================================================== */
+
+.project-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--mainPraimary);
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.project-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--mainPraimary);
+  transition: width 0.25s ease;
+}
+
+.project-link:hover::after {
+  width: 100%;
+}
+
+/* ===================================================== */
+/* MOBILE OPTIMIZATION */
+/* ===================================================== */
+
+@media (max-width: 768px) {
+  .flip-card:hover .flip-card-inner {
+    transform: none; /* Disable flip on mobile hover */
+  }
+
+  .flip-card-back {
+    transform: none;
+    position: relative;
+  }
 }

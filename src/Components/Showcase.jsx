@@ -1,14 +1,28 @@
 import { Box, Card, Container, Grid, Typography, Stack } from '@mui/material';
 import ShowcaseCalendar from './showcaseComponents/calendarfilter/ShowcaseCalendar';
 import CalendarBeforeImg from '../Images/pojectImages/showCaseImages/calendar-before.png';
+import ResourceAllocationBefore from '../Images/pojectImages/showCaseImages/resource-calendar-amchart.png';
+import ResourceAllocationCalendar from './showcaseComponents/amchartgraphs/allocationCalendar/ResourceAllocationCalendar';
+import { Height } from '@mui/icons-material';
 
 const showcaseData = [
   {
     id: 1,
     title: 'Custom Calendar',
-    description: 'Reusable calendar with day/week/month/year support.',
+    description: 'An advanced calendar filter built on top of MUI date pickers, enhanced with multi-range selection (day/week/month/year), custom week highlighting, controlled navigation, and clean state management. Optimized for dashboard applications requiring accurate date ranges, reset/apply actions, and consistent UX across large datasets.',
     before: CalendarBeforeImg,
     after: <ShowcaseCalendar />,
+  },
+   {
+    id: 2,
+    title: 'Resource Allocation Calendar',
+    description:
+      'A calendar-based heatmap chart built using amCharts to visualize daily resource utilization across weeks. Each cell represents a day with color-coded utilization levels, interactive tooltips, and click-based drill-down support. Designed for production planning and capacity monitoring dashboards where quick identification of underutilized or overloaded days is critical.',
+    before: ResourceAllocationBefore,
+    beforeImgSize:{
+      width: '100%',
+    },
+    after: <ResourceAllocationCalendar />,
   },
 ];
 
@@ -56,7 +70,7 @@ const Showcase = () => {
                   component="img"
                   src={item.before}
                   sx={{
-                    width: 'auto',
+                    width: item?.beforeImgSize?.width ?? 'auto',
                     height: 'auto',
                     borderRadius: 2,
                     objectFit: 'contain',

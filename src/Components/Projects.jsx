@@ -1,126 +1,192 @@
-import { Box, Card, CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Card, Container, Grid, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 import 'animate.css';
 import '../Styles/Projects.css';
 
-// import axios from 'axios'
-import { motion } from 'framer-motion';
-import { myProjects , projectTypes} from './MyProjectData';
+import { myProjects, projectTypes } from './MyProjectData';
 
-
-
-const Projects= ()=> {
+const Projects = () => {
+  /* ---------------- ANIMATIONS ---------------- */
   const container = {
-		hidden: { opacity: 1, scale: 0 },
-		visible: {
-			opacity: 1,
-			scale: 1,
-			transition: {
-				delayChildren: 0.2,
-				staggerChildren: 0.2,
-				duration: 0.5,
-			},
-		},
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.2,
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const item = {
-		hidden: { y: '100%', opacity: 0 },
-		visible: { y: 0, opacity: 1 },
+    hidden: { y: 80, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
   };
 
-  // const [open, setOpen] = useState(false);
-  // const [EProjectDetails, setProjectDetails] = useState({});
+  /* ---------------- STATE ---------------- */
+  const [repos, setRepos] = useState(myProjects);
+  const [filtertype, setFiltertype] = useState('All');
 
-
-  const handleOpenLink=(e)=>{
-    if(e.githubLink!==''){
-      window.open(e.githubLink, '_blank');
+  /* ---------------- HANDLERS ---------------- */
+  const handleFilter = (type) => {
+    if (type === 'All') {
+      setRepos(myProjects);
+    } else {
+      setRepos(myProjects.filter(p => p.Language?.includes(type)));
     }
-  }
-  const [repos, setRepos] = useState(myProjects)
-  const [filtertype, setFiltertype] = useState('All')
+    setFiltertype(type);
+  };
 
+  const handleOpenLink = (url) => {
+    if (!url) return;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
-  const handelFilter = (e) =>{
-    setRepos(myProjects?.filter(v => v?.Language?.includes(e)));
-    setFiltertype(e)
-  }
-
-
+  /* ---------------- UI ---------------- */
   return (
-    <>
-    <Container component='section'>
-      <Stack textTransform='uppercase' mb={6} >
-
-        <Typography fontSize={{xs:'30px', lg:'100px'}} fontWeight="800"  letterSpacing={15}
-          position='absolute' top={40} left={{xs:5, lg:'50%'}} sx={{transform:'translateX(-50%)'}}
-          color={(theme) => theme.palette.mode === 'dark' ? '#ffffff12' : '#1e253012' }>
-          Works
-        </Typography>
-
-        <Typography fontWeight="900"
-          fontSize={{xs:'25px', lg:'60px'}}  textAlign={{xs:'left', lg:'center'}}  >
-            My
-          <span style={{color:'var(--mainPraimary)'}} > Projects</span>
+    <Container component="section">
+      {/* ================= HEADER ================= */}
+      <Stack mb={6}>
+        <Typography
+          fontSize={{ xs: 28, lg: 60 }}
+          fontWeight={900}
+          textAlign={{ xs: 'left', lg: 'center' }}
+        >
+          My <span style={{ color: 'var(--mainPraimary)' }}>Projects</span>
         </Typography>
       </Stack>
 
-
-      <Stack direction="row" gap={{ xs: 2, md: 4 }} justifyContent="center" mt={10} mb={4}>
+      {/* ================= FILTER ================= */}
+      <Stack direction="row" gap={3} justifyContent="center" mb={5}>
         {projectTypes.map((type) => (
           <Typography
             key={type}
-            className={`project-type ${filtertype === type && 'project-type-active'}`}
-            onClick={() => {
-              if (type === 'All') {
-                setRepos(myProjects);
-              }
-              setFiltertype(type);
-              if (type !== 'All') handelFilter(type);
-            }}
+            className={`project-type ${
+              filtertype === type ? 'project-type-active' : ''
+            }`}
+            onClick={() => handleFilter(type)}
           >
             {type}
           </Typography>
         ))}
       </Stack>
-      <Grid container spacing={3} 
-        component={motion.ul} variants={container} initial="hidden" animate="visible" 
-        className='animate__animated animate__zoomIn' 
-        
+
+      {/* ================= PROJECT GRID ================= */}
+      <Grid
+        container
+        spacing={4}
+        component={motion.ul}
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        sx={{ listStyle: 'none', padding: 0 }}
       >
-        {repos && repos.map(e =>
-          <Grid item  xs={12} md={6} lg={4}  key={e?.id} sx={{position: 'relative', listStyle:'none'}}
-            component={motion.li} variants={item}
+        {repos.map((e) => (
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={4}
+            key={e.id}
+            component={motion.li}
+            variants={item}
           >
-            <Card className="flip-card"  component={motion.div}
-              onClick={()=> {
-                // setOpen(true); setProjectDetails(e); 
-              
-              handleOpenLink(e)}} >
+            <Card className="project-card">
 
-              <Box className="flip-card-inner">
-                {/* when hover over card show next box */}
-                <CardMedia className="flip-card-front"
-                  component="img"
-                  image={e.img} alt={e?.title} 
-                  sx={{objectPosition: "top"}}
-                />
+              {/* ---------- TITLE (ALWAYS VISIBLE) ---------- */}
+              <Typography
+                variant="h6"
+                fontWeight={700}
+                textAlign="center"
+                mb={1}
+              >
+                {e.title}
+              </Typography>
 
+              {/* ---------- IMAGE OR DESCRIPTION ---------- */}
+              {e.img ? (
+                <Box
+                  className="flip-card"
+                  onClick={() => handleOpenLink(e.rlink || e.githubLink)}
+                >
+                  <Box className="flip-card-inner">
+                    {/* FRONT */}
+                    <Box className="flip-card-front">
+                      <img src={e.img} alt={e.title} />
+                    </Box>
 
-                <Box className="flip-card-back" >
-                  <Typography variant="h6" color='white' > {e?.title} </Typography>
-                  {/* <Typography variant="h6" > {e.description} </Typography> */}
+                    {/* BACK */}
+                    <Box className="flip-card-back">
+                      <Typography variant="body2" mb={1}>
+                        {e.description}
+                      </Typography>
+
+                      {e.Language?.length > 0 && (
+                        <Box mt={1}>
+                          {e.Language.map((tech) => (
+                            <span key={tech} className="tech-chip">
+                              {tech}
+                            </span>
+                          ))}
+                        </Box>
+                      )}
+                    </Box>
+                  </Box>
                 </Box>
-              </Box>
+              ) : (
+                /* ---------- NO IMAGE → SHOW DESCRIPTION ---------- */
+                <Box className="description-only">
+                  <Typography variant="body2" mb={1}>
+                    {e.description}
+                  </Typography>
+
+                  {e.Language?.length > 0 && (
+                    <Box mt={1}>
+                      {e.Language.map((tech) => (
+                        <span key={tech} className="tech-chip">
+                          {tech}
+                        </span>
+                      ))}
+                    </Box>
+                  )}
+                </Box>
+              )}
+
+              {/* ---------- LINKS (OPTIONAL) ---------- */}
+              {(e.rlink || e.githubLink) && (
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  gap={3}
+                  mt={2}
+                >
+                  {e.rlink && (
+                    <Typography
+                      className="project-link"
+                      onClick={() => handleOpenLink(e.rlink)}
+                    >
+                      Live
+                    </Typography>
+                  )}
+                  {e.githubLink && (
+                    <Typography
+                      className="project-link"
+                      onClick={() => handleOpenLink(e.githubLink)}
+                    >
+                      GitHub
+                    </Typography>
+                  )}
+                </Box>
+              )}
             </Card>
           </Grid>
-        )}
+        ))}
       </Grid>
-
     </Container>
-  </>
-  )
-}
+  );
+};
 
 export default Projects;
