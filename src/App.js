@@ -68,6 +68,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='*' element={<Home />} />
         </Routes>
+        <NavbarBottom/>
       </ThemeProvider>
 
     </LocalizationProvider>

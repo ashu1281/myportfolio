@@ -13,13 +13,13 @@ const showcaseData = [
     before: CalendarBeforeImg,
     after: <ShowcaseCalendar />,
   },
-   {
+  {
     id: 2,
     title: 'Resource Allocation Calendar',
     description:
       'A calendar-based heatmap chart built using amCharts to visualize daily resource utilization across weeks. Each cell represents a day with color-coded utilization levels, interactive tooltips, and click-based drill-down support. Designed for production planning and capacity monitoring dashboards where quick identification of underutilized or overloaded days is critical.',
     before: ResourceAllocationBefore,
-    beforeImgSize:{
+    beforeImgSize: {
       width: '100%',
     },
     after: <ResourceAllocationCalendar />,
@@ -31,32 +31,35 @@ const Showcase = () => {
     <Container>
       {/* HEADER */}
       <Typography
-        fontSize={{ xs: 28, lg: 48 }}
+        fontSize={{ xs: 24, sm: 32, lg: 48 }}
         fontWeight={800}
-        mb={6}
+        mb={{ xs: 4, lg: 6 }}
         textAlign="center"
       >
         Component <span style={{ color: 'var(--mainPraimary)' }}>Showcase</span>
       </Typography>
 
-      <Stack gap={4}>
+      <Stack gap={{ xs: 3, lg: 4 }}>
         {showcaseData.map((item) => (
           <Grid
             key={item.id}
             container
-            spacing={3}
+            spacing={{ xs: 2, lg: 3 }}
             sx={{
               backgroundColor: (theme) =>
                 theme.palette.mode === 'dark'
                   ? '#151725'
                   : '#f5f7fa',
               borderRadius: 2,
-              p: 3,
+              p: { xs: 2, lg: 3 },
             }}
           >
             {/* TITLE */}
             <Grid item xs={12}>
-              <Typography variant="h6" color="white" sx={{ color: 'var(--mainPraimary)' }}>
+              <Typography
+                variant="h6"
+                sx={{ color: 'var(--mainPraimary)' }}
+              >
                 {item.title}
               </Typography>
               <Typography color="text.secondary" mt={0.5}>
@@ -65,42 +68,47 @@ const Showcase = () => {
             </Grid>
 
             {/* BEFORE */}
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <Typography fontSize={14} mb={1} color="text.primary">
                 Before
               </Typography>
               <Box
-                component="img"
-                src={item.before}
                 sx={{
-                  width: item?.beforeImgSize?.width ?? 'auto',
-                  height: 'auto',
+                  width: item?.beforeImgSize?.width ?? '100%',
+                  overflow: 'hidden',
                   borderRadius: 2,
-                  objectFit: 'contain',
                 }}
-              />
-            </Grid>
-
-            {/* AFTER */}
-            <Grid item xs={6}>
-              <Typography fontSize={14} mb={1} color="text.primary">
-                After
-              </Typography>
-
-              {typeof item.after === 'string' ? (
+              >
                 <Box
                   component="img"
-                  src={item.after}
+                  src={item.before}
                   sx={{
-                    width: 'auto',
+                    width: '100%',
                     height: 'auto',
-                    borderRadius: 2,
                     objectFit: 'contain',
                   }}
                 />
-              ) : (
-                item.after
-              )}
+              </Box>
+            </Grid>
+
+            {/* AFTER */}
+            <Grid item xs={12} md={6}>
+              <Typography fontSize={14} mb={1} color="text.primary">
+                After
+              </Typography>
+                {typeof item.after === 'string' ? (
+                  <Box
+                    component="img"
+                    src={item.after}
+                    sx={{
+                      width: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                    }}
+                  />
+                ) : (
+                    item.after
+                )}
             </Grid>
           </Grid>
         ))}
@@ -108,5 +116,6 @@ const Showcase = () => {
     </Container>
   );
 };
+
 
 export default Showcase;
