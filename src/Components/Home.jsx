@@ -45,7 +45,7 @@ export const Home = () => {
                   color="text.disabled"
                   textAlign="center"
                 >
-                  ASHISH Gaikwad
+                  Ashish Gaikwad
                 </Typography>
 
                 <Typography
@@ -65,9 +65,7 @@ export const Home = () => {
                   px={{ xs: 2, md: 10 }}
                   className="animate__animated animate__fadeIn"
                 >
-                  I'm a dedicated full-stack developer committed to crafting clean
-                  and user-friendly software experiences. My passion is to build
-                  exceptional software that enriches lives and creates real impact.
+                  I’m a Full-Stack Developer with 3+ years of experience building scalable, data-driven web applications using React and Spring Boot. I specialize in crafting clean, responsive user interfaces, interactive dashboards, and real-time visualizations. I enjoy turning complex business requirements into intuitive, high-performance software that delivers real impact.
                 </Typography>
 
                 {/* Manual navigation button (still works) */}
