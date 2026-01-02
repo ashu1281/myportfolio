@@ -15,7 +15,7 @@ const COLORS = {
   ORANGE: '#FB923C',
   YELLOW: '#FACC15',
   RED: '#EF4444',
-  WEEKEND: '#E5E7EB',
+  WEEKEND: 'transparent',
   TRANSPARENT: 'rgba(0,0,0,0)',
 };
 
@@ -165,6 +165,7 @@ const ResourceAllocationCalendar = ({ chartId = 'resourceCalendar' }) => {
         `[bold]${d.y}[/]\n` +
         `${formattedDate}\n` +
         `Used Capacity: [bold]${d.value}[/]\n` +
+        `Total Available Capacity: [bold]${1000}[/]\n` +
         `Utilization: ${d.avg}%`
       );
     });
@@ -202,6 +203,53 @@ const ResourceAllocationCalendar = ({ chartId = 'resourceCalendar' }) => {
       event.target.cursorOverStyle =
         ctx?.value ? am4core.MouseCursorStyle.pointer : am4core.MouseCursorStyle.default;
     });
+
+
+    chart.legend = new am4charts.Legend();
+    chart.legend.position = 'top';
+    chart.legend.align = 'center';
+    chart.legend.contentAlign = 'center';
+    chart.legend.fontSize = 12;
+    chart.legend.labels.template.fill = am4core.color('#FFFFFF');
+    chart.legend.marginBottom = 10;
+    chart.legend.useDefaultMarker = true;
+
+    // Make legend items clickable=false (calendar legend)
+    chart.legend.itemContainers.template.clickable = false;
+    chart.legend.itemContainers.template.focusable = false;
+    chart.legend.itemContainers.template.cursorOverStyle =
+      am4core.MouseCursorStyle.default;
+    chart.legend.data = [
+      {
+        name: '100% Utilization',
+        fill: am4core.color(COLORS.VIOLET),
+      },
+      {
+        name: '≥ 95%',
+        fill: am4core.color(COLORS.GREEN),
+      },
+      {
+        name: '≥ 80%',
+        fill: am4core.color(COLORS.ORANGE),
+      },
+      {
+        name: '≥ 50%',
+        fill: am4core.color(COLORS.YELLOW),
+      },
+      {
+        name: 'Low Utilization',
+        fill: am4core.color(COLORS.RED),
+      },
+      {
+        name: 'Weekend',
+        fill: am4core.color(COLORS.WEEKEND),
+      },
+    ];
+    chart.paddingTop = 15;
+
+    chart.legend.markers.template.width = 14;
+    chart.legend.markers.template.height = 14;
+    chart.legend.markers.template.strokeOpacity = 0;
 
     /* ================= VALUE BULLET ================= */
     let bullet = series.bullets.push(new am4charts.Bullet());
@@ -257,8 +305,8 @@ const ResourceAllocationCalendar = ({ chartId = 'resourceCalendar' }) => {
     bullet3.zIndex = 3;
     bullet3.locationY = 0.75;
     bullet3.locationX = 0.95;
-    bullet3.dy = 5;
-    bullet3.dx = -11;
+    bullet3.dy = 7;
+    bullet3.dx = -10;
     bullet3.interactionsEnabled = false;
     bullet3.label.adapter.add('opacity', (opacity, target) => {
       if (target.dataItem && target.dataItem.dataContext) {

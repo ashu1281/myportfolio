@@ -41,65 +41,68 @@ const Showcase = () => {
 
       <Stack gap={4}>
         {showcaseData.map((item) => (
-            <Grid
-             key={item.id}
-              container
-              spacing={3}
-              sx={{
-                backgroundColor: '#151725',
-                borderRadius: 2,
-                p: 3,
-              }}
-            >
-              {/* TITLE */}
-              <Grid item xs={12}>
-                <Typography variant="h6" color="white" sx={{color: 'var(--mainPraimary)' }}>
-                  {item.title}
-                </Typography>
-                <Typography color="text.secondary" mt={0.5}>
-                  {item.description}
-                </Typography>
-              </Grid>
+          <Grid
+            key={item.id}
+            container
+            spacing={3}
+            sx={{
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? '#151725'
+                  : '#f5f7fa',
+              borderRadius: 2,
+              p: 3,
+            }}
+          >
+            {/* TITLE */}
+            <Grid item xs={12}>
+              <Typography variant="h6" color="white" sx={{ color: 'var(--mainPraimary)' }}>
+                {item.title}
+              </Typography>
+              <Typography color="text.secondary" mt={0.5}>
+                {item.description}
+              </Typography>
+            </Grid>
 
-              {/* BEFORE */}
-              <Grid item xs={6}>
-                <Typography fontSize={14} mb={1} color="text.primary">
-                  Before
-                </Typography>
+            {/* BEFORE */}
+            <Grid item xs={6}>
+              <Typography fontSize={14} mb={1} color="text.primary">
+                Before
+              </Typography>
+              <Box
+                component="img"
+                src={item.before}
+                sx={{
+                  width: item?.beforeImgSize?.width ?? 'auto',
+                  height: 'auto',
+                  borderRadius: 2,
+                  objectFit: 'contain',
+                }}
+              />
+            </Grid>
+
+            {/* AFTER */}
+            <Grid item xs={6}>
+              <Typography fontSize={14} mb={1} color="text.primary">
+                After
+              </Typography>
+
+              {typeof item.after === 'string' ? (
                 <Box
                   component="img"
-                  src={item.before}
+                  src={item.after}
                   sx={{
-                    width: item?.beforeImgSize?.width ?? 'auto',
+                    width: 'auto',
                     height: 'auto',
                     borderRadius: 2,
                     objectFit: 'contain',
                   }}
                 />
-              </Grid>
-
-              {/* AFTER */}
-              <Grid item xs={6}>
-                <Typography fontSize={14} mb={1} color="text.primary">
-                  After
-                </Typography>
-
-                  {typeof item.after === 'string' ? (
-                    <Box
-                      component="img"
-                      src={item.after}
-                      sx={{
-                        width: 'auto',
-                        height: 'auto',
-                        borderRadius: 2,
-                        objectFit: 'contain',
-                      }}
-                    />
-                  ) : (
-                    item.after
-                  )}
-              </Grid>
+              ) : (
+                item.after
+              )}
             </Grid>
+          </Grid>
         ))}
       </Stack>
     </Container>

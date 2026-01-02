@@ -9,28 +9,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export const Home = () => {
   const navigate = useNavigate();
-  const hasNavigatedRef = useRef(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (hasNavigatedRef.current) return;
-
-      const scrollTop = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-
-      // when user reaches bottom
-      if (scrollTop + windowHeight >= documentHeight - 10) {
-        hasNavigatedRef.current = true;
-        navigate(`${startLink}/about`);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [navigate]);
-
   return (
     <Box minHeight="710px" height="100vh" overflow="hidden">
       <Box
