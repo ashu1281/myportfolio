@@ -148,6 +148,16 @@ export const myProjects = [
 
 	{
 		id: 305,
+		title: 'Jewelry Production Planning System',
+		img: null, // add image
+		link: '',
+		githubLink: '',
+		Language: ['React', 'Redux', 'Spring Boot', 'AmCharts'],
+		description:
+			'Production planning system handling up to 20K orders per day with a custom calendar for day-wise resource allocation, improving scheduling efficiency by 20–25%.',
+	},
+	{
+		id: 304,
 		title: 'Social Platform for Musicians',
 		img: null, // add image
 		link: '',
@@ -157,16 +167,6 @@ export const myProjects = [
 			'Real-time collaboration platform for musicians supporting live streaming, interactive posts, and media sharing for 1,000+ users.',
 	},
 
-	{
-		id: 304,
-		title: 'Jewelry Production Planning System',
-		img: null, // add image
-		link: '',
-		githubLink: '',
-		Language: ['React', 'Redux', 'Spring Boot', 'AmCharts'],
-		description:
-			'Production planning system handling up to 20K orders per day with a custom calendar for day-wise resource allocation, improving scheduling efficiency by 20–25%.',
-	},
 	{
 		id: 303,
 		title: 'SCADA Desktop Application (POC)',
