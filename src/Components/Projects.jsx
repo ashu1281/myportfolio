@@ -63,7 +63,7 @@ const Projects = () => {
         variants={container}
         initial="hidden"
         animate="visible"
-        sx={{ listStyle: 'none', pb: 4 }}
+        sx={{ listStyle: 'none' }}
       >
         {repos.map((e) => (
           <Grid

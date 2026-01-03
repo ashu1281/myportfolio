@@ -67,7 +67,7 @@ const Showcase = () => {
 
       <Grid container variants={container} component={motion.ul} gap={{ xs: 3, lg: 4 }} initial="hidden"
         animate="visible"
-        sx={{ listStyle: 'none', pb: 4 }}>
+        sx={{ listStyle: 'none'}}>
         {showcaseData.map((item) => (
           <Grid
             item

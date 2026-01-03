@@ -13,6 +13,7 @@ import SecureLinkPreviewComponent from "./SecureLinkPreviewComponent";
 interface LinkPreviewContainerProps {
   url: string;
   width?: string;
+  maxWidth?: string;
   height?: string;
   showPreviewNotAvlUI?: boolean;
 }
@@ -37,7 +38,8 @@ const Response: APIResponse = {
 
 const LinkPreviewContainer: React.FC<LinkPreviewContainerProps> = ({
   url,
-  width = "550px",
+  width,
+  maxWidth = "550px",
   height = "162px",
   showPreviewNotAvlUI = false,
 }) => {
@@ -81,7 +83,7 @@ const LinkPreviewContainer: React.FC<LinkPreviewContainerProps> = ({
   );
 
   if (metaData === null) {
-    return <Box sx={{ width }}>{customSkeleton}</Box>;
+    return <Box sx={{ width : width ?? '100%', maxWidth }}>{customSkeleton}</Box>;
   }
 
   const isValidPreview =
@@ -91,7 +93,7 @@ const LinkPreviewContainer: React.FC<LinkPreviewContainerProps> = ({
 
   if (!isValidPreview) {
     return (
-      <Box sx={{ width }}>
+      <Box sx={{ width : width ?? '100%', maxWidth }}>
         <SecureLinkPreviewComponent
           url={url}
           data={metaData}
@@ -102,7 +104,7 @@ const LinkPreviewContainer: React.FC<LinkPreviewContainerProps> = ({
   }
 
   return (
-    <Box sx={{ width, mt: 1 }}>
+    <Box sx={{ width : width ?? '100%', maxWidth, mt: 1 }}>
       {/* Visible URL */}
       <Box
         component="a"
@@ -139,6 +141,7 @@ const LinkPreviewContainer: React.FC<LinkPreviewContainerProps> = ({
           {/* IMAGE */}
           <CardMedia
             component="img"
+            width={'100%'}
             height={height}
             image={metaData.image!}
             alt="Preview"
