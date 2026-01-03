@@ -6,7 +6,7 @@ const ShowcaseCalendar = () => {
   const [date, setDate] = useState({
     start: dayjs().format('YYYY-MM-DD'),
     end: dayjs().format('YYYY-MM-DD'),
-    type: 'day',
+    type: 'week',
   });
 
   return (
