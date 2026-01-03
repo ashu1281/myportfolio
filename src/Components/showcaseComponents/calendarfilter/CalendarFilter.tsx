@@ -228,13 +228,6 @@ const CalendarFilter = ({
 		convertToDayjs(propSelectedDate)
 	);
 	const [anchorEl, setAnchorEl] = useState(null);
-	const anchorRef = useRef<HTMLDivElement | null>(null);
-
-	useEffect(() => {
-		if (anchorRef.current) {
-			setAnchorEl(anchorRef?.current);
-		}
-	}, []);
 	const displayDate = useMemo(() => convertToDayjs(propSelectedDate), [propSelectedDate]);
 	const displayRange = propSelectedDate.type;
 
@@ -246,13 +239,14 @@ const CalendarFilter = ({
 		setSelectedDate(convertToDayjs(propSelectedDate));
 	}, [propSelectedDate]);
 
+	const [showCalendarOutsidePopover, setShowCalendarOutsidePopover] = useState(true); // remove this part
 	const handleOpen = (event: any) => {
 		setRange(propSelectedDate.type);
 		setSelectedDate(convertToDayjs(propSelectedDate));
-		if (anchorRef.current) {
-			setAnchorEl(anchorRef?.current);
-		}
+		setAnchorEl(event.currentTarget);
+		if (showCalendarOutsidePopover) setShowCalendarOutsidePopover(false); // remove this line
 	};
+
 
 	const handleClose = () => setAnchorEl(null);
 	const handleReset = () => {
@@ -351,7 +345,7 @@ const CalendarFilter = ({
 			width: '100% !important',
 			display: "flex",
 			justifyContent: 'start',
-			padding:"12px 0px"
+			padding: "12px 0px"
 		},
 		'.MuiYearCalendar-button ': {
 			// width: '104px',
@@ -495,10 +489,141 @@ const CalendarFilter = ({
 			</Box>
 		)
 	}
+	// in real usecase directly put this React.Node inside popover and remove outside rendered Box.
+	const Calendar = () => {
+		return (
+			<Box sx={{ width: "100%", display: 'flex', flexDirection: "column", gap: '12px' }}>
+				<Box sx={{ display: 'flex', flexDirection: "column", gap: "12px" }}>
 
+					{/* RANGE SELECT BUTTONS */}
+					{!showDateRangeOutsideofPopover && <DateRange />}
+
+					{range !== 'year' &&
+						<Box
+							sx={{
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
+								gap: 1,
+								background: 'var(--Background-B5, #2C3045)',
+								borderRadius: '8px',
+								padding: '6px 0px',
+								position: 'relative',
+								height: "36px"
+							}}
+						>
+							<IconButton
+								onClick={() => {
+									let newDate;
+									if (range === 'week') {
+										newDate = selectedDate!.subtract(1, 'week');
+									} else if (range === 'month') {
+										newDate = selectedDate!.subtract(1, 'year');
+									} else {
+										newDate = selectedDate!.subtract(1, range === 'day' ? 'month' : range);
+									}
+									if (newDate.isAfter(minDate.subtract(1, 'day'))) {
+										setSelectedDate(newDate);
+									}
+								}}
+								size="small"
+								disabled={selectedDate?.isBefore(minDate.add(1, 'day'))}
+							>
+								<ChevronLeft style={{ color: 'white' }} />
+							</IconButton>
+
+							<Typography
+								sx={{
+									fontSize: '14px',
+									fontWeight: 500,
+									color: 'white',
+								}}
+							>
+								{range === 'day' && selectedDate!.format('MMM YYYY')}
+								{range === 'month' && selectedDate!.format('YYYY')}
+								{range === 'week' && formatWeekLabel(selectedDate!)}
+							</Typography>
+
+							<IconButton
+								onClick={() => {
+									let newDate;
+									if (range === 'week') {
+										newDate = selectedDate!.add(1, 'week');
+									} else if (range === 'month') {
+										newDate = selectedDate!.add(1, 'year');
+									} else {
+										newDate = selectedDate!.add(1, range === 'day' ? 'month' : range);
+									}
+									if (newDate.isBefore(maxDate.add(1, 'day'))) {
+										setSelectedDate(newDate);
+									}
+								}}
+								size="small"
+								disabled={selectedDate?.isAfter(maxDate.subtract(1, 'day'))}
+							>
+								<ChevronRight style={{ color: 'white' }} />
+							</IconButton>
+						</Box>
+					}
+
+					{(range === 'day' || range === 'month' || range === 'year') && (
+						<DateCalendar
+							value={selectedDate}
+							onChange={(newValue: any) => {
+								setSelectedDate(newValue);
+							}}
+							views={calendarViews}
+							openTo={calendarViews[0]}
+							sx={calendarStyles}
+							disableFuture={range !== 'day'}
+							minDate={minDate}
+							maxDate={maxDate}
+						/>
+					)}
+
+					{range === 'week' && (
+						<DateCalendar
+							value={selectedDate}
+							onChange={(newValue: any) => {
+								const { start } = getWeekRange(newValue);
+								setSelectedDate(start);
+							}}
+							views={['day']}
+							openTo="day"
+							sx={calendarStyles}
+							slots={{
+								day: (props: any) => (
+									<WeekDay {...props} selectedDate={selectedDate} />
+								),
+							}}
+							minDate={minDate}
+							maxDate={maxDate}
+						/>
+					)}
+				</Box>
+				<Box sx={{ bgcolor: '#2C3045', height: '1px' }} />
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+						height: '28px'
+					}}
+				>
+					<Button variant="text" sx={{ textTransform: 'none', color: "var(--Primary-P5, #4785FF)", height: '20px', padding: "0px" }}
+						onClick={() => handleReset()} >
+						Reset Filters
+					</Button>
+					<Button variant="contained" onClick={handleApply}
+						sx={{ textTransform: 'none', bgcolor: "var(--Primary-P4, #0042C4)", height: '28px', padding: "10px 20px", fontWeight: 600, color: "#FFFFFF", borderRadius: '8px' }} >
+						Apply
+					</Button>
+				</Box>
+			</Box>
+		)
+	}
 	return (
 		<Box
-			ref={anchorRef}
 			sx={{
 				display: 'flex',
 				alignItems: 'center',
@@ -506,7 +631,7 @@ const CalendarFilter = ({
 				flexWrap: 'wrap',
 				flexDirection: 'row',
 				justifyContent: "flex-end",
-				maxWidth:"350px" //temp
+				maxWidth: "350px" //temp
 			}}
 		>
 			{showDateRangeOutsideofPopover && <DateRange />}
@@ -519,7 +644,7 @@ const CalendarFilter = ({
 				fontColor={fontColor}
 				isDisabled={isDisabled}
 				handleOpenPopover={handleOpen}
-				showDateRangeOutsideofPopover={true}
+				showDateRangeOutsideofPopover={false}
 			/>
 
 			{!showDateRangeOutsideofPopover && <IconButton
@@ -537,7 +662,24 @@ const CalendarFilter = ({
 					style={{ color: 'var(--Primary-P6, #98BBFF)', height: "16px", width: "16px" }}
 				/>
 			</IconButton>}
-
+			{/* directly showing calendar as per my portfolio usecase, in real use remove this part*/}
+			{showCalendarOutsidePopover &&
+				<Box
+					sx={{
+						mt: 1,
+						background: 'var(--Background-B4, #1A1E32)',
+						border: '1px solid var(--Background-B6, #474D6C)',
+						borderRadius: '12px',
+						padding: '12px',
+						boxShadow: '0px 0px 20px 12px #00000080',
+						overflow: 'visible',
+						width: '100%',
+						maxWidth: "364px",
+					}}
+				>
+					<Calendar />
+				</Box>
+			}
 			<Popover
 				id="date-popover"
 				open={open}
@@ -570,134 +712,7 @@ const CalendarFilter = ({
 				}}
 				disableRestoreFocus
 			>
-				<Box sx={{ width: "100%", display: 'flex', flexDirection: "column", gap: '12px' }}>
-					<Box sx={{ display: 'flex', flexDirection: "column", gap: "12px" }}>
-
-						{/* RANGE SELECT BUTTONS */}
-						{!showDateRangeOutsideofPopover && <DateRange />}
-
-						{range !== 'year' &&
-							<Box
-								sx={{
-									display: 'flex',
-									alignItems: 'center',
-									justifyContent: 'center',
-									gap: 1,
-									background: 'var(--Background-B5, #2C3045)',
-									borderRadius: '8px',
-									padding: '6px 0px',
-									position: 'relative',
-									height: "36px"
-								}}
-							>
-								<IconButton
-									onClick={() => {
-										let newDate;
-										if (range === 'week') {
-											newDate = selectedDate!.subtract(1, 'week');
-										} else if (range === 'month') {
-											newDate = selectedDate!.subtract(1, 'year');
-										} else {
-											newDate = selectedDate!.subtract(1, range === 'day' ? 'month' : range);
-										}
-										if (newDate.isAfter(minDate.subtract(1, 'day'))) {
-											setSelectedDate(newDate);
-										}
-									}}
-									size="small"
-									disabled={selectedDate?.isBefore(minDate.add(1, 'day'))}
-								>
-									<ChevronLeft style={{ color: 'white' }} />
-								</IconButton>
-
-								<Typography
-									sx={{
-										fontSize: '14px',
-										fontWeight: 500,
-										color: 'white',
-									}}
-								>
-									{range === 'day' && selectedDate!.format('MMM YYYY')}
-									{range === 'month' && selectedDate!.format('YYYY')}
-									{range === 'week' && formatWeekLabel(selectedDate!)}
-								</Typography>
-
-								<IconButton
-									onClick={() => {
-										let newDate;
-										if (range === 'week') {
-											newDate = selectedDate!.add(1, 'week');
-										} else if (range === 'month') {
-											newDate = selectedDate!.add(1, 'year');
-										} else {
-											newDate = selectedDate!.add(1, range === 'day' ? 'month' : range);
-										}
-										if (newDate.isBefore(maxDate.add(1, 'day'))) {
-											setSelectedDate(newDate);
-										}
-									}}
-									size="small"
-									disabled={selectedDate?.isAfter(maxDate.subtract(1, 'day'))}
-								>
-									<ChevronRight style={{ color: 'white' }} />
-								</IconButton>
-							</Box>
-						}
-
-						{(range === 'day' || range === 'month' || range === 'year') && (
-							<DateCalendar
-								value={selectedDate}
-								onChange={(newValue: any) => {
-									setSelectedDate(newValue);
-								}}
-								views={calendarViews}
-								openTo={calendarViews[0]}
-								sx={calendarStyles}
-								disableFuture={range !== 'day'}
-								minDate={minDate}
-								maxDate={maxDate}
-							/>
-						)}
-
-						{range === 'week' && (
-							<DateCalendar
-								value={selectedDate}
-								onChange={(newValue: any) => {
-									const { start } = getWeekRange(newValue);
-									setSelectedDate(start);
-								}}
-								views={['day']}
-								openTo="day"
-								sx={calendarStyles}
-								slots={{
-									day: (props: any) => (
-										<WeekDay {...props} selectedDate={selectedDate} />
-									),
-								}}
-								minDate={minDate}
-								maxDate={maxDate}
-							/>
-						)}
-					</Box>
-					<Box sx={{ bgcolor: '#2C3045', height: '1px' }} />
-					<Box
-						sx={{
-							display: 'flex',
-							justifyContent: 'space-between',
-							alignItems: 'center',
-							height: '28px'
-						}}
-					>
-						<Button variant="text" sx={{ textTransform: 'none', color: "var(--Primary-P5, #4785FF)", height: '20px', padding: "0px" }}
-							onClick={() => handleReset()} >
-							Reset Filters
-						</Button>
-						<Button variant="contained" onClick={handleApply}
-							sx={{ textTransform: 'none', bgcolor: "var(--Primary-P4, #0042C4)", height: '28px', padding: "10px 20px", fontWeight: 600, color: "#FFFFFF", borderRadius: '8px' }} >
-							Apply
-						</Button>
-					</Box>
-				</Box>
+				<Calendar />
 			</Popover>
 		</Box>
 	);

@@ -61,14 +61,16 @@ export const frameworks = [
 	{ id: 211, title: 'Figma', icon: <FaFigma />, color: '#F24E1E' },
 	{ id: 213, title: 'React Material UI', icon: <SiMui />, color: 'rgb(0, 127, 255)' },
 	{ id: 212, title: 'Angular Material UI', icon: <SiAngular />, color: '#DD0031' },
-	{ id: 214, title: 'amCharts', 
+	{
+		id: 214, title: 'amCharts',
 		icon: (
 			<img
 				src={AmChartsLogo}
 				alt="AmCharts"
-				style={{ width: 100, height: 44 , marginLeft:"-10px"}}
+				style={{ width: 100, height: 44, marginLeft: "-10px" }}
 			/>
-		), color: '#00A3E0' },
+		), color: '#00A3E0'
+	},
 	{
 		id: 215,
 		title: 'HighCharts',
@@ -134,7 +136,7 @@ export const Experience = [
 export const projectTypes = ['All', 'React'];
 
 export const myProjects = [
-	
+
 	{
 		id: 306,
 		title: 'Solar Energy Monitoring Application',
@@ -143,10 +145,8 @@ export const myProjects = [
 		githubLink: '',
 		Language: ['React', 'Redux', 'Material-UI', 'Highcharts'],
 		description:
-			'Enterprise dashboard application for monitoring solar plant performance. Tracks 12+ KPIs such as generation, efficiency, losses, and availability using real-time and historical data.',
-	},
-
-	{
+			'Solar energy monitoring dashboard featuring real-time KPIs, custom Plant Analysis charts, and a Google 3D Tiles–powered map view for state-to-site level performance visualization.'
+	}, {
 		id: 305,
 		title: 'Jewelry Production Planning System',
 		img: null, // add image
@@ -182,8 +182,8 @@ export const myProjects = [
 		id: 302,
 		title: 'Personal Portfolio',
 		img: portfolioImg,
-		link: 'https://ashishgaikwad.me',
-		rlink: 'https://ashishgaikwad.me',
+		link: 'https://ashishgaikwad.in',
+		rlink: 'https://ashishgaikwad.in',
 		githubLink: 'https://github.com/ashu1281/myportfolio',
 		Language: ['React', 'Material-UI'],
 		description:

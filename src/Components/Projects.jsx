@@ -6,25 +6,10 @@ import 'animate.css';
 import '../Styles/Projects.css';
 
 import { myProjects, projectTypes } from './MyProjectData';
+import PageTitle from './ui/PageTitle';
+import { container, item } from './About';
 
 const Projects = () => {
-  /* ---------------- ANIMATIONS ---------------- */
-  const container = {
-    hidden: { opacity: 1, scale: 0 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { y: 80, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-  };
 
   /* ---------------- STATE ---------------- */
   const [repos, setRepos] = useState(myProjects);
@@ -47,17 +32,13 @@ const Projects = () => {
 
   /* ---------------- UI ---------------- */
   return (
-    <Container component="section">
+    <Container sx={{ my: { xs: '12%', lg: '70px' } }}>
       {/* ================= HEADER ================= */}
-      <Stack mb={6}>
-        <Typography
-          fontSize={{ xs: 28, lg: 60 }}
-          fontWeight={900}
-          textAlign={{ xs: 'left', lg: 'center' }}
-        >
-          My <span style={{ color: 'var(--mainPraimary)' }}>Projects</span>
-        </Typography>
-      </Stack>
+      <PageTitle
+				bgText="WORK"
+				title="My"
+				highlight="Projects"
+			/>
 
       {/* ================= FILTER ================= */}
       <Stack direction="row" gap={3} justifyContent="center" mb={5}>
@@ -82,7 +63,7 @@ const Projects = () => {
         variants={container}
         initial="hidden"
         animate="visible"
-        sx={{ listStyle: 'none', padding: 0 }}
+        sx={{ listStyle: 'none', pb: 4 }}
       >
         {repos.map((e) => (
           <Grid
