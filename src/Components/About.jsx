@@ -20,53 +20,34 @@ import '../Styles/index.css';
 
 
 import { motion } from 'framer-motion';
+import PageTitle from './ui/PageTitle';
 
-export default function About() {
-   const container = {
-		hidden: { opacity: 1, scale: 0 },
-		visible: {
-			opacity: 1,
-			scale: 1,
-			transition: {
-				delayChildren: 0.3,
-				staggerChildren: 0.2,
-				duration: 0.5,
-			},
+export const container = {
+	hidden: { opacity: 1, scale: 0 },
+	visible: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			delayChildren: 0.3,
+			staggerChildren: 0.2,
+			duration: 0.5,
 		},
-	};
+	},
+};
+export const item = {
+	hidden: { y: '100%', opacity: 0 },
+	visible: { y: 0, opacity: 1 },
+};
+export default function About() {
 
-	const item = {
-		hidden: { y: '100%', opacity: 0 },
-		visible: { y: 0, opacity: 1 },
-	};
 
 	return (
 		<Container sx={{ my: { xs: '12%', lg: '70px' } }}>
-			<Stack textTransform="uppercase" mb={6}>
-				<Typography
-					fontSize={{ xs: '30px', lg: '100px' }}
-					fontWeight="800"
-					letterSpacing={15}
-					position="absolute"
-					top={40}
-					left={{ xs: 5, lg: '50%' }}
-					sx={{ transform: 'translateX(-50%)' }}
-					color={(theme) =>
-						theme.palette.mode === 'dark' ? '#ffffff12' : '#1e253012'
-					}
-				>
-					Resume
-				</Typography>
-
-				<Typography
-					fontWeight="900"
-					fontSize={{ xs: '25px', lg: '60px' }}
-					textAlign={{ xs: 'left', lg: 'center' }}
-				>
-					About
-					<span style={{ color: 'var(--mainPraimary)' }}> Me</span>
-				</Typography>
-			</Stack>
+			<PageTitle
+				bgText="RESUME"
+				title="About"
+				highlight="Me"
+			/>
 
 			<Grid container spacing={3}>
 				<Grid item xs={12} lg={5} color="text.secondary">
@@ -161,18 +142,18 @@ export default function About() {
 
 				<Grid
 					container
-					spacing={2} 
+					spacing={2}
 					my={4}
 					color="text.primary"
 					textAlign="center"
-	                component={motion.ul} 
+					component={motion.ul}
 					variants={container} initial="hidden" animate="visible"
 					className="container"
 				>
 					{technicalSkills?.map((skill, i) => (
-						<Grid xs={6} sm={4} lg={3} key={skill?.id} sx={{listStyle:'none',flexGrow:'1 !important'}}  
-						component={motion.li} 
-						variants={item}
+						<Grid xs={6} sm={4} lg={3} key={skill?.id} sx={{ listStyle: 'none', flexGrow: '1 !important' }}
+							component={motion.li}
+							variants={item}
 						>
 							<Box
 								fontSize={60}
@@ -207,23 +188,23 @@ export default function About() {
 			<Divider sx={{ bgcolor: 'Divider', width: '50%', mx: 'auto', my: 4 }} />
 			<Box mt={6} component="section">
 				<Typography variant="h5" fontWeight={600}>
-				Frameworks & Libraries:
+					Frameworks & Libraries:
 				</Typography>
 
 				<Grid
 					container
-					spacing={2} 
+					spacing={2}
 					my={4}
 					color="text.primary"
 					textAlign="center"
-	                component={motion.ul} 
+					component={motion.ul}
 					variants={container} initial="hidden" animate="visible"
 					className="container"
 				>
 					{frameworks?.map((skill, i) => (
-						<Grid xs={6} sm={4} lg={3} key={skill?.id} sx={{listStyle:'none',flexGrow:'1 !important'}}  
-						component={motion.li} 
-						variants={item}
+						<Grid xs={6} sm={4} lg={3} key={skill?.id} sx={{ listStyle: 'none', flexGrow: '1 !important' }}
+							component={motion.li}
+							variants={item}
 						>
 							<Box
 								fontSize={60}
@@ -259,7 +240,7 @@ export default function About() {
 
 			<Box my={6}>
 				<Typography variant="h5" fontWeight={600} mb={2}>
-				Tools:
+					Tools:
 				</Typography>
 
 				<Box
