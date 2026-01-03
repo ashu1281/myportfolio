@@ -8,6 +8,7 @@ import { Height } from '@mui/icons-material';
 import { container, item } from './About';
 import { motion } from 'framer-motion';
 import PageTitle from './ui/PageTitle';
+import LinkPreviewContainer from './showcaseComponents/linkpreviewUI/LinkPreviewContainer';
 
 const showcaseData = [
   {
@@ -42,6 +43,15 @@ const showcaseData = [
     },
     after: ResourceAllocationAfter,
   },
+  {
+    id: 4,
+    title: 'Secure Link Preview Component',
+    description:
+      'A secure and reusable link preview component that displays metadata such as title, description, image, and hostname with skeleton loading and graceful fallbacks. Fully supports light and dark themes, handles restricted or broken links safely, and ensures consistent, reliable previews for enterprise dashboards and collaboration platforms.',
+    before: null, // or add a static placeholder image if you want
+    after: <LinkPreviewContainer url="https://www.ashishgaikwad.in/" showPreviewNotAvlUI />,
+  }
+
 ];
 
 const Showcase = () => {
@@ -89,7 +99,7 @@ const Showcase = () => {
             </Grid>
 
             {/* BEFORE */}
-            <Grid item xs={12} md={6}>
+            {item?.before && <Grid item xs={12} md={6}>
               <Typography fontSize={14} mb={1} color="text.primary">
                 Before
               </Typography>
@@ -111,12 +121,12 @@ const Showcase = () => {
                   }}
                 />
               </Box>
-            </Grid>
+            </Grid>}
 
             {/* AFTER */}
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={item?.before ? 6 : 12}>
               <Typography fontSize={14} mb={1} color="text.primary">
-                After
+                {item?.before ? "After" : ""}
               </Typography>
               {typeof item.after === 'string' ? (
                 <Box
