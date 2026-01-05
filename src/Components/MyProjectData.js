@@ -97,10 +97,10 @@ export const tools = [
 
 export const Education = [
 	{
-		date: 'Jun/2016 - March/2017',
-		title: 'SSC',
-		organization: 'BhagatSingh Vidyalaya, Ashta',
-		icon: <GiOpenBook />,
+		date: 'Aug/2019 - May/2023',
+		title: 'B.Tech in Computer Engineering',
+		organization: 'Government College of Engineering, Jalgaon',
+		icon: <FaLaptopCode />,
 	},
 	{
 		date: 'Jul/2017 - Feb/2019',
@@ -109,25 +109,25 @@ export const Education = [
 		icon: <GiOpenBook />,
 	},
 	{
-		date: 'Aug/2019 - May/2023',
-		title: 'B.Tech in Computer Engineering',
-		organization: 'Government College of Engineering, Jalgaon',
-		icon: <FaLaptopCode />,
+		date: 'Jun/2016 - March/2017',
+		title: 'SSC',
+		organization: 'BhagatSingh Vidyalaya, Ashta',
+		icon: <GiOpenBook />,
 	},
 
 ];
 export const Experience = [
 	{
-		date: 'Jan/2023 - Jul/2023',
-		title: 'Internship in Web Development at,',
-		organization: 'PratitiTechnologies Pvt. Ltd, Pune',
-		icon: <GiOpenBook />,
-	},
-	{
 		date: 'Aug/2023 - present',
 		title: 'Software Engineer at,',
 		organization: 'PratitiTechnologies Pvt. Ltd, Pune',
 		icon: <FaToolbox />,
+	},
+	{
+		date: 'Jan/2023 - Jul/2023',
+		title: 'Internship in Web Development at,',
+		organization: 'PratitiTechnologies Pvt. Ltd, Pune',
+		icon: <GiOpenBook />,
 	},
 ];
 
