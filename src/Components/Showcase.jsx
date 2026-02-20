@@ -1,14 +1,13 @@
-import { Box, Card, Container, Grid, Typography, Stack } from '@mui/material';
-import ShowcaseCalendar from './showcaseComponents/calendarfilter/ShowcaseCalendar';
-import CalendarBeforeImg from '../Images/pojectImages/showCaseImages/calendar-before.png';
-import ResourceAllocationBefore from '../Images/pojectImages/showCaseImages/resource-calendar-amchart.png';
-import ResourceAllocationAfter from '../Images/pojectImages/showCaseImages/resource-calendar-amchart-after.png';
-import ResourceAllocationCalendar from './showcaseComponents/amchartgraphs/allocationCalendar/ResourceAllocationCalendar';
-import { Height } from '@mui/icons-material';
-import { container, item } from './About';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import PageTitle from './ui/PageTitle';
+import CalendarBeforeImg from '../Images/pojectImages/showCaseImages/calendar-before.png';
+import ResourceAllocationAfter from '../Images/pojectImages/showCaseImages/resource-calendar-amchart-after.png';
+import ResourceAllocationBefore from '../Images/pojectImages/showCaseImages/resource-calendar-amchart.png';
+import { container } from './About';
+import ResourceAllocationCalendar from './showcaseComponents/amchartgraphs/allocationCalendar/ResourceAllocationCalendar';
+import ShowcaseCalendar from './showcaseComponents/calendarfilter/ShowcaseCalendar';
 import LinkPreviewContainer from './showcaseComponents/linkpreviewUI/LinkPreviewContainer';
+import PageTitle from './ui/PageTitle';
 
 const showcaseData = [
   {

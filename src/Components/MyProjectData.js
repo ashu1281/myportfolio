@@ -16,7 +16,6 @@ import { GiOpenBook } from 'react-icons/gi';
 import {
 	SiAngular,
 	SiC,
-	SiChartdotjs,
 	SiCplusplus,
 	SiElectron,
 	SiJira,
@@ -24,11 +23,11 @@ import {
 	SiTypescript,
 	SiVisualstudiocode
 } from 'react-icons/si';
+import AmChartsLogo from "../Images/pojectImages/amchartsLogo.png";
 import electronPorjectImg from '../Images/pojectImages/Electron_React.svg';
+import HighchartLogo from '../Images/pojectImages/highChartLogo.png';
 import portfolioImg from '../Images/pojectImages/portfolio.png';
 import ticketstm from '../Images/pojectImages/Ticketstm.png';
-import HighchartLogo from '../Images/pojectImages/highChartLogo.png'
-import AmChartsLogo from "../Images/pojectImages/amchartsLogo.png"
 
 export const startLink = '';
 
