@@ -1,15 +1,15 @@
-import React, { Fragment, useEffect, useState } from 'react';
 import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
 } from '@mui/material';
+import { Fragment, useEffect, useState } from 'react';
 
 import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import WorkIcon from '@mui/icons-material/Work';
-import PreviewIcon from '@mui/icons-material/Preview';
 import MailIcon from '@mui/icons-material/Mail';
+import PersonIcon from '@mui/icons-material/Person';
+import PreviewIcon from '@mui/icons-material/Preview';
+import WorkIcon from '@mui/icons-material/Work';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { startLink } from './MyProjectData';

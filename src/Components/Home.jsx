@@ -1,11 +1,10 @@
 import { Grid, Typography } from '@mui/material';
 import { Box, Container } from '@mui/system';
-import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { startLink } from './MyProjectData';
 
-import '../Styles/Home.css';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import '../Styles/Home.css';
 
 export const Home = () => {
   const navigate = useNavigate();

@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Home from './Components/Home';
 import TogleTheme from './Components/TogleTheme';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline, GlobalStyles } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import About from './Components/About';
+import Contact from './Components/Contact';
 import NavbarBottom from './Components/NavbarBottom';
 import NavigationLg from './Components/NavigationLg';
-import Contact from './Components/Contact';
 import Projects from './Components/Projects';
 import Showcase from './Components/Showcase';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers';
 
 
 

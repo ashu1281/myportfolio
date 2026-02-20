@@ -1,6 +1,6 @@
 import { useState } from "react";
+import LinkPreviewNotAvlIcon from '../../../Images/pojectImages/showCaseImages/linkPreviewNotAvlIcon.svg';
 import { APIResponse } from "./LinkPreviewContainer";
-import LinkPreviewNotAvlIcon from '../../../Images/pojectImages/showCaseImages/linkPreviewNotAvlIcon.svg'
 interface SecureLinkPreviewComponentProps {
   url: string;
   data: APIResponse | null;

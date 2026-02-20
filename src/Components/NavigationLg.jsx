@@ -1,13 +1,12 @@
-import React from 'react';
-import { Stack, Typography, Box } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../Styles/NavigationLg.css';
 
 import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import WorkIcon from '@mui/icons-material/Work';
-import PreviewIcon from '@mui/icons-material/Preview';
 import MailIcon from '@mui/icons-material/Mail';
+import PersonIcon from '@mui/icons-material/Person';
+import PreviewIcon from '@mui/icons-material/Preview';
+import WorkIcon from '@mui/icons-material/Work';
 
 import { startLink } from './MyProjectData';
 

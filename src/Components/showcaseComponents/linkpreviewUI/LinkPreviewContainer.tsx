@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Skeleton from "@mui/material/Skeleton";
 import {
+  Box,
   Card,
   CardContent,
   CardMedia,
   Typography,
-  Box,
 } from "@mui/material";
+import Skeleton from "@mui/material/Skeleton";
 import { useTheme } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
 import SecureLinkPreviewComponent from "./SecureLinkPreviewComponent";
 
 interface LinkPreviewContainerProps {

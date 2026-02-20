@@ -1,17 +1,17 @@
-import React, { Fragment } from 'react';
 import { Grid, Typography } from '@mui/material';
+import { Fragment } from 'react';
 
 import {
-	Timeline,
-	TimelineItem,
-	TimelineSeparator,
-	TimelineConnector,
-	TimelineDot,
-	TimelineContent,
+   Timeline,
+   TimelineConnector,
+   TimelineContent,
+   TimelineDot,
+   TimelineItem,
+   TimelineSeparator,
 } from '@mui/lab';
 
 import 'animate.css';
-import { Education , Experience} from './MyProjectData';
+import { Education, Experience } from './MyProjectData';
 
 
 export default function Journey() {

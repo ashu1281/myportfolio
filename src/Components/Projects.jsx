@@ -1,13 +1,13 @@
 import { Box, Card, Container, Grid, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 import 'animate.css';
 import '../Styles/Projects.css';
 
+import { container, item } from './About';
 import { myProjects, projectTypes } from './MyProjectData';
 import PageTitle from './ui/PageTitle';
-import { container, item } from './About';
 
 const Projects = () => {
 

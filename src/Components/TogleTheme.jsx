@@ -1,9 +1,8 @@
-import React from 'react'
-import { IconButton, Stack } from '@mui/material'
-import '../Styles/TogleTheme.css'
+import { IconButton, Stack } from '@mui/material';
+import '../Styles/TogleTheme.css';
 
-import { RiSunFill } from "react-icons/ri";
 import { FaMoon } from "react-icons/fa";
+import { RiSunFill } from "react-icons/ri";
 
 
 

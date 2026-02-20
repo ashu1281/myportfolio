@@ -128,8 +128,8 @@ const DateNavigation = ({
 	};
 
 
-	const isPrevDisabled = getNextDate(selectedDate, -1).isBefore(minDate.startOf('day'));
-	const isNextDisabled = getNextDate(selectedDate, 1).isAfter(maxDate.endOf('day'));
+	// const isPrevDisabled = getNextDate(selectedDate, -1).isBefore(minDate.startOf('day'));
+	// const isNextDisabled = getNextDate(selectedDate, 1).isAfter(maxDate.endOf('day'));
 
 	const navigate = (direction: -1 | 1) => {
 		const newDate = getNextDate(selectedDate, direction);

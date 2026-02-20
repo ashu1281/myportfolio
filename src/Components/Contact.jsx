@@ -1,9 +1,7 @@
 import { Box, Container, Grid, Link, Stack, Typography } from '@mui/material';
-import React from 'react';
 
-import { FaEnvelopeOpen, FaFacebookF, FaGithub, FaLinkedinIn, FaMap, FaPhoneAlt, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaEnvelopeOpen, FaGithub, FaLinkedinIn, FaMap, FaPhoneAlt, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import '../Styles/Contact.css';
-import ContactForm from './ContactForm';
 import PageTitle from './ui/PageTitle';
 
 
