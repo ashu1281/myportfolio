@@ -269,7 +269,7 @@ const MapView: React.FC = () => {
                     bottom: 0,
                     left: 0,
                     width: "100%",
-                    height: { xs: "160px", md: "190px" },
+                    minHeight: { xs: "170px", md: "190px" },
                     zIndex: 2
                 }}
             >

@@ -7,8 +7,9 @@ const CARD_WIDTH = 420;
 const GAP = 20;
 
 const cardStyle = {
-    minWidth: `${CARD_WIDTH}px`,
-    height: "150px",
+    width: `${CARD_WIDTH}px`,
+    maxWidth:'calc(100% - 50px)',
+    minHeight: "150px",
     borderRadius: "6px",
     border: "2px solid",
     borderImageSource:
