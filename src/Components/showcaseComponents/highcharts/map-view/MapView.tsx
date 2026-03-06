@@ -190,11 +190,21 @@ const MapView: React.FC = () => {
                 }}
             >
                 Map data ©{" "}
-                <a href="https://www.esri.com" target="_blank" style={{ color: "#9FB3C8" }}>
+                <a
+                    href="https://www.esri.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#9FB3C8" }}
+                >
                     Esri
                 </a>{" "}
                 | Visualization ©{" "}
-                <a href="https://www.highcharts.com" target="_blank" style={{ color: "#9FB3C8" }}>
+                <a
+                    href="https://www.highcharts.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#9FB3C8" }}
+                >
                     Highcharts
                 </a>
             </div>
