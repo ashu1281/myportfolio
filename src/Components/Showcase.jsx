@@ -15,7 +15,7 @@ const showcaseData = [
     id: 5,
     title: "Map View",
     description:
-      "An interactive geospatial visualization built with Highcharts Maps and Esri satellite tiles. The component displays project footprints across regions using dynamic bubble markers that scale with zoom levels. Features include smooth panning/zooming, clustered markers, attractive globe-style layout, and a continuously scrolling project showcase carousel. Designed for dashboard applications to present real-world impact, deployments, and project distribution in a visually engaging way.",
+      "An interactive geospatial visualization built with Highcharts Maps and Esri satellite tiles. The component displays project footprints across regions using dynamic bubble markers that scale with zoom levels. Features include smooth panning/zooming, clustered markers, Attractive & Responsive globe-style layout, and a continuously scrolling project showcase carousel. Designed for dashboard applications to present real-world impact, deployments, and project distribution in a visually engaging way.",
     before: null,
     after: <MapView />,
   },

@@ -4,6 +4,7 @@ import "highcharts/modules/tiledwebmap";
 import "highcharts/modules/marker-clusters";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import MapViewCarousel from "./MapViewCarousel";
+import { Box } from "@mui/material";
 
 const customStyles: React.CSSProperties = {
     backgroundColor: "#010202",
@@ -167,9 +168,9 @@ const MapView: React.FC = () => {
     }, []);
 
     return (
-        <div
-            style={{
-                height: "80vh",
+        <Box
+            sx={{
+                height: { xs: "70vh", md: "80vh" },
                 width: "100%",
                 background: "#070C1B",
                 position: "relative",
@@ -177,9 +178,9 @@ const MapView: React.FC = () => {
                 ...customStyles
             }}
         >
-            {/* give credit to Highcharts and Esri */}
-            <div
-                style={{
+            {/* Credits to Highcharts and Esri*/}
+            <Box
+                sx={{
                     position: "absolute",
                     top: 12,
                     right: 20,
@@ -207,21 +208,21 @@ const MapView: React.FC = () => {
                 >
                     Highcharts
                 </a>
-            </div>
+            </Box>
 
             {/* Reset Zoom Button */}
-            <div
+            <Box
                 onClick={resetZoom}
-                style={{
+                sx={{
                     position: "absolute",
+                    display:{xs:'none', md:"flex"},
                     top: 50,
                     right: 20,
-                    width: "38px",
-                    height: "38px",
+                    width: 38,
+                    height: 38,
                     borderRadius: "8px",
                     background: "rgba(8,15,30,0.85)",
                     border: "1px solid #067FBA",
-                    display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     cursor: "pointer",
@@ -229,52 +230,52 @@ const MapView: React.FC = () => {
                     zIndex: 10,
                     boxShadow: "0 0 10px rgba(0,200,255,0.4)"
                 }}
-                title="Reset Zoom"
             >
                 <RestartAltIcon fontSize="small" />
-            </div>
+            </Box>
 
             {/* Globe container */}
-            <div
-                style={{
+            <Box
+                sx={{
                     position: "absolute",
-                    right: "15%",
+                    right: { xs: "50%", md: "15%" },
+                    transform: { xs: "translateX(50%)", md: "none" },
                     top: 0,
-                    width: "70%",
+                    width: { xs: "95%", md: "70%" },
                     height: "100%",
                     aspectRatio: "1 / 1",
-                    borderRadius: "50%",
+                    borderRadius:  { xs: "5%", md: "50%" },
                     overflow: "hidden",
                     border: "12px solid transparent",
                     outline: "2.85px solid #067FBA",
                     outlineOffset: "-5px",
                     boxShadow: "0 0 30px rgba(0,200,255,0.6)",
-                    background: 'black'
+                    background: "black"
                 }}
             >
-                <div
+                <Box
                     ref={chartRef}
-                    style={{
+                    sx={{
                         width: "100%",
-                        height: `${screenHeight - 100}px`
+                        height: { xs: "60vh", md: `${screenHeight - 100}px` }
                     }}
                 />
-            </div>
+            </Box>
 
             {/* Carousel */}
-            <div
-                style={{
+            <Box
+                sx={{
                     position: "absolute",
                     bottom: 0,
                     left: 0,
                     width: "100%",
-                    height: "190px",
+                    height: { xs: "160px", md: "190px" },
                     zIndex: 2
                 }}
             >
                 <MapViewCarousel />
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 
