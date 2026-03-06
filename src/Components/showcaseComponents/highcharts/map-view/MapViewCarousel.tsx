@@ -133,7 +133,7 @@ const MapViewCarousel: React.FC = () => {
             <Box
                 sx={{
                     position: "absolute",
-                    left: 0,
+                    left: -5,
                     height: "100%",
                     width: "60px",
                     pointerEvents: "none",
@@ -147,7 +147,7 @@ const MapViewCarousel: React.FC = () => {
             <Box
                 sx={{
                     position: "absolute",
-                    right: 0,
+                    right: -10,
                     height: "100%",
                     width: "60px",
                     pointerEvents: "none",
