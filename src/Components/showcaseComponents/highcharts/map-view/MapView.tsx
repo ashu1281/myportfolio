@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Highcharts from "highcharts/highmaps";
 import "highcharts/modules/tiledwebmap";
 import "highcharts/modules/marker-clusters";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import MapViewCarousel from "./MapViewCarousel";
 
 const customStyles: React.CSSProperties = {
@@ -23,7 +24,15 @@ const customStyles: React.CSSProperties = {
 
 const MapView: React.FC = () => {
     const chartRef = useRef<HTMLDivElement>(null);
+    const chartInstance = useRef<any>(null);
     const [screenHeight, setScreenHeight] = useState(800);
+
+    const resetZoom = () => {
+        const chart = chartInstance.current;
+        if (!chart) return;
+
+        chart.mapView?.setView([78, 18], 4.6);
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -38,17 +47,16 @@ const MapView: React.FC = () => {
     useEffect(() => {
         if (!chartRef.current) return;
 
-        // Portfolio project footprint
         const projectData = [
             { name: "Mumbai – Fintech Dashboard", lat: 19.076, lon: 72.8777, count: 12 },
             { name: "Pune – AI Analytics Platform", lat: 18.5204, lon: 73.8567, count: 8 },
             { name: "Bangalore – Cloud Infrastructure", lat: 12.9716, lon: 77.5946, count: 15 },
             { name: "Hyderabad – Data Engineering", lat: 17.385, lon: 78.4867, count: 10 },
             { name: "Chennai – Enterprise Integrations", lat: 13.0827, lon: 80.2707, count: 6 },
-            { name: "Delhi – Government Data Platform", lat: 28.6139, lon: 77.2090, count: 9 }
+            { name: "Delhi – Government Data Platform", lat: 28.6139, lon: 77.209, count: 9 }
         ];
 
-        const chart = Highcharts.mapChart(chartRef.current, {
+        chartInstance.current = Highcharts.mapChart(chartRef.current, {
             chart: {
                 backgroundColor: "transparent",
                 margin: 0,
@@ -101,7 +109,7 @@ const MapView: React.FC = () => {
 
                 {
                     type: "mapbubble",
-                    data: projectData.map(p => ({
+                    data: projectData.map((p) => ({
                         name: p.name,
                         lat: p.lat,
                         lon: p.lon,
@@ -135,16 +143,15 @@ const MapView: React.FC = () => {
             legend: { enabled: false }
         });
 
+        const chart = chartInstance.current;
+
         Highcharts.addEvent(chart.mapView as any, "afterSetView", function () {
             const zoom = chart.mapView?.zoom || 1;
 
-            const pointSeries = chart.series.find(
-                (s) => s.type === "mapbubble"
-            );
+            const pointSeries = chart.series.find((s: any) => s.type === "mapbubble");
 
             if (pointSeries) {
                 pointSeries.points.forEach((point: any) => {
-
                     const count = point.options.z || 1;
                     const baseSize = 8 + Math.log(count) * 2;
                     const zoomFactor = zoom * 1.5;
@@ -154,11 +161,9 @@ const MapView: React.FC = () => {
                     point.graphic?.attr({
                         r: finalRadius
                     });
-
                 });
             }
         });
-
     }, []);
 
     return (
@@ -193,6 +198,32 @@ const MapView: React.FC = () => {
                     Highcharts
                 </a>
             </div>
+
+            {/* Reset Zoom Button */}
+            <div
+                onClick={resetZoom}
+                style={{
+                    position: "absolute",
+                    top: 50,
+                    right: 20,
+                    width: "38px",
+                    height: "38px",
+                    borderRadius: "8px",
+                    background: "rgba(8,15,30,0.85)",
+                    border: "1px solid #067FBA",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    color: "white",
+                    zIndex: 10,
+                    boxShadow: "0 0 10px rgba(0,200,255,0.4)"
+                }}
+                title="Reset Zoom"
+            >
+                <RestartAltIcon fontSize="small" />
+            </div>
+
             {/* Globe container */}
             <div
                 style={{
@@ -208,7 +239,7 @@ const MapView: React.FC = () => {
                     outline: "2.85px solid #067FBA",
                     outlineOffset: "-5px",
                     boxShadow: "0 0 30px rgba(0,200,255,0.6)",
-                    background:'black'
+                    background: 'black'
                 }}
             >
                 <div
@@ -233,7 +264,6 @@ const MapView: React.FC = () => {
             >
                 <MapViewCarousel />
             </div>
-
         </div>
     );
 };

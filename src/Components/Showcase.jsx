@@ -71,8 +71,31 @@ const Showcase = () => {
         title="Component"
         highlight="Showcase"
       />
-
-
+      {/* Scroll hint */}
+      <Typography
+        variant="body2"
+        sx={{
+          textAlign: "center",
+          mt: -4,
+          mb: 4,
+          color: "text.secondary",
+          fontStyle: "italic",
+          animation: "glowPulse 2.5s ease-in-out infinite",
+          "@keyframes glowPulse": {
+            "0%": {
+              textShadow: "0 0 0px var(--mainPraimary)"
+            },
+            "50%": {
+              textShadow: "0 0 10px var(--mainPraimary)"
+            },
+            "100%": {
+              textShadow: "0 0 0px var(--mainPraimary)"
+            }
+          }
+        }}
+      >
+        Please scroll down to explore all showcases ↓
+      </Typography>
       <Grid container variants={container} component={motion.ul} gap={{ xs: 4, lg: 6 }} initial="hidden"
         animate="visible"
         sx={{ listStyle: 'none', pl: { xs: 2, md: 0 } }}>
