@@ -1,0 +1,241 @@
+import React, { useEffect, useRef, useState } from "react";
+import Highcharts from "highcharts/highmaps";
+import "highcharts/modules/tiledwebmap";
+import "highcharts/modules/marker-clusters";
+import MapViewCarousel from "./MapViewCarousel";
+
+const customStyles: React.CSSProperties = {
+    backgroundColor: "#010202",
+    zIndex: 1,
+    backgroundImage: `
+    radial-gradient(4px 4px at 20px 30px, #386863, transparent),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath d='M100 94L101 99L106 100L101 101L100 106L99 101L94 100L99 99L100 94Z' fill='%235787BE'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath d='M100 94L101 99L106 100L101 101L100 106L99 101L94 100L99 99L100 94Z' fill='%236D4545'/%3E%3C/svg%3E")
+  `,
+    backgroundRepeat: "repeat, repeat, repeat",
+    backgroundSize: "200px 200px, 200px 200px, 200px 200px",
+    backgroundPosition: `
+    0 0,
+    70px 30px,
+    160px 100px
+  `
+};
+
+const MapView: React.FC = () => {
+    const chartRef = useRef<HTMLDivElement>(null);
+    const [screenHeight, setScreenHeight] = useState(800);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenHeight(window.innerHeight);
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        if (!chartRef.current) return;
+
+        // Portfolio project footprint
+        const projectData = [
+            { name: "Mumbai – Fintech Dashboard", lat: 19.076, lon: 72.8777, count: 12 },
+            { name: "Pune – AI Analytics Platform", lat: 18.5204, lon: 73.8567, count: 8 },
+            { name: "Bangalore – Cloud Infrastructure", lat: 12.9716, lon: 77.5946, count: 15 },
+            { name: "Hyderabad – Data Engineering", lat: 17.385, lon: 78.4867, count: 10 },
+            { name: "Chennai – Enterprise Integrations", lat: 13.0827, lon: 80.2707, count: 6 },
+            { name: "Delhi – Government Data Platform", lat: 28.6139, lon: 77.2090, count: 9 }
+        ];
+
+        const chart = Highcharts.mapChart(chartRef.current, {
+            chart: {
+                backgroundColor: "transparent",
+                margin: 0,
+                spacing: [0, 0, 0, 0],
+                panning: {
+                    enabled: true,
+                    type: "xy"
+                }
+            },
+
+            title: { text: "" },
+
+            tooltip: {
+                pointFormat: "<b>{point.name}</b><br/>Projects Delivered: {point.z}"
+            },
+
+            mapNavigation: {
+                enabled: true,
+                enableMouseWheelZoom: true,
+                enableDoubleClickZoom: true,
+                enableTouchZoom: true
+            },
+
+            mapView: {
+                center: [78, 18],
+                zoom: 4.6,
+                projection: { name: "WebMercator" },
+                maxZoom: 19
+            },
+
+            series: [
+                {
+                    type: "tiledwebmap",
+                    name: "Satellite",
+                    provider: {
+                        type: "Esri",
+                        theme: "WorldImagery"
+                    }
+                },
+
+                // {
+                //     type: "tiledwebmap",
+                //     name: "Labels",
+                //     provider: {
+                //         type: "Esri",
+                //         theme: "WorldBoundariesAndPlaces",
+                //     },
+                //     opacity: 0.2
+                // },
+
+                {
+                    type: "mapbubble",
+                    data: projectData.map(p => ({
+                        name: p.name,
+                        lat: p.lat,
+                        lon: p.lon,
+                        z: p.count
+                    })),
+                    minSize: 20,
+                    maxSize: "8%",
+                    sizeBy: "area",
+                    marker: {
+                        fillColor: "rgba(0,150,255,0.85)",
+                        lineWidth: 0
+                    },
+
+                    dataLabels: {
+                        enabled: true,
+                        format: "{point.name}",
+                        style: {
+                            color: "#ffffff",
+                            fontSize: "14px",
+                            fontWeight: "600",
+                            textOutline: "none"
+                        }
+                    }
+                }
+            ],
+
+            credits: {
+                enabled: true,
+            },
+
+            legend: { enabled: false }
+        });
+
+        Highcharts.addEvent(chart.mapView as any, "afterSetView", function () {
+            const zoom = chart.mapView?.zoom || 1;
+
+            const pointSeries = chart.series.find(
+                (s) => s.type === "mapbubble"
+            );
+
+            if (pointSeries) {
+                pointSeries.points.forEach((point: any) => {
+
+                    const count = point.options.z || 1;
+                    const baseSize = 8 + Math.log(count) * 2;
+                    const zoomFactor = zoom * 1.5;
+
+                    const finalRadius = baseSize + zoomFactor;
+
+                    point.graphic?.attr({
+                        r: finalRadius
+                    });
+
+                });
+            }
+        });
+
+    }, []);
+
+    return (
+        <div
+            style={{
+                height: "80vh",
+                width: "100%",
+                background: "#070C1B",
+                position: "relative",
+                overflow: "hidden",
+                ...customStyles
+            }}
+        >
+            {/* give credit to Highcharts and Esri */}
+            <div
+                style={{
+                    position: "absolute",
+                    top: 12,
+                    right: 20,
+                    fontSize: "11px",
+                    color: "#9FB3C8",
+                    zIndex: 10,
+                    opacity: 0.85
+                }}
+            >
+                Map data ©{" "}
+                <a href="https://www.esri.com" target="_blank" style={{ color: "#9FB3C8" }}>
+                    Esri
+                </a>{" "}
+                | Visualization ©{" "}
+                <a href="https://www.highcharts.com" target="_blank" style={{ color: "#9FB3C8" }}>
+                    Highcharts
+                </a>
+            </div>
+            {/* Globe container */}
+            <div
+                style={{
+                    position: "absolute",
+                    right: "15%",
+                    top: 0,
+                    width: "70%",
+                    height: "100%",
+                    aspectRatio: "1 / 1",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border: "12px solid transparent",
+                    outline: "2.85px solid #067FBA",
+                    outlineOffset: "-5px",
+                    boxShadow: "0 0 30px rgba(0,200,255,0.6)",
+                    background:'black'
+                }}
+            >
+                <div
+                    ref={chartRef}
+                    style={{
+                        width: "100%",
+                        height: `${screenHeight - 100}px`
+                    }}
+                />
+            </div>
+
+            {/* Carousel */}
+            <div
+                style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "190px",
+                    zIndex: 2
+                }}
+            >
+                <MapViewCarousel />
+            </div>
+
+        </div>
+    );
+};
+
+export default MapView;
