@@ -170,7 +170,7 @@ const MapView: React.FC = () => {
     return (
         <Box
             sx={{
-                height: { xs: "70vh", md: "80vh" },
+                height: { xs: "80vh", md: "95vh" },
                 width: "100%",
                 background: "#070C1B",
                 position: "relative",
@@ -238,10 +238,10 @@ const MapView: React.FC = () => {
             <Box
                 sx={{
                     position: "absolute",
-                    right: { xs: "50%", md: "15%" },
+                    right: { xs: "50%", md: "10%" },
                     transform: { xs: "translateX(50%)", md: "none" },
                     top: 0,
-                    width: { xs: "95%", md: "70%" },
+                    width: { xs: "95%", md: "80%" },
                     height: "100%",
                     aspectRatio: "1 / 1",
                     borderRadius:  { xs: "5%", md: "50%" },
@@ -257,7 +257,7 @@ const MapView: React.FC = () => {
                     ref={chartRef}
                     sx={{
                         width: "100%",
-                        height: { xs: "60vh", md: `${screenHeight - 100}px` }
+                        height: { xs: "60vh", md: `${screenHeight - 50}px` }
                     }}
                 />
             </Box>
