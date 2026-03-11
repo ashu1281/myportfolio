@@ -257,7 +257,7 @@ const MapView: React.FC = () => {
                     ref={chartRef}
                     sx={{
                         width: "100%",
-                        height: { xs: "60vh", md: `${screenHeight - 50}px` }
+                        height: { xs: "60vh", md: `${Math.min(screenHeight - 50, 700)}px` }
                     }}
                 />
             </Box>
