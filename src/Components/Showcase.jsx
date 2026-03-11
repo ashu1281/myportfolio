@@ -8,7 +8,7 @@ import ResourceAllocationCalendar from './showcaseComponents/amchartgraphs/alloc
 import ShowcaseCalendar from './showcaseComponents/calendarfilter/ShowcaseCalendar';
 import LinkPreviewContainer from './showcaseComponents/linkpreviewUI/LinkPreviewContainer';
 import PageTitle from './ui/PageTitle';
-import MapView from './showcaseComponents/highcharts/map-view/MapView';
+// import MapView from './showcaseComponents/highcharts/map-view/MapView';
 
 const showcaseData = [
   // {
