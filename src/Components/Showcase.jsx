@@ -9,10 +9,11 @@ import ShowcaseCalendar from './showcaseComponents/calendarfilter/ShowcaseCalend
 import LinkPreviewContainer from './showcaseComponents/linkpreviewUI/LinkPreviewContainer';
 import PageTitle from './ui/PageTitle';
 import MapView from './showcaseComponents/highcharts/map-view/MapView';
+import EnergyWaterfall from './showcaseComponents/highcharts/waterfall/EnergyWaterfall';
 
 const showcaseData = [
   {
-    id: 5,
+    id: 6,
     title: "Map View",
     description:
       "An interactive geospatial visualization built with Highcharts Maps and Esri satellite tiles. The component displays project footprints across regions using dynamic bubble markers that scale with zoom levels. Features include smooth panning/zooming, clustered markers, Attractive & Responsive globe-style layout, and a continuously scrolling project showcase carousel. Designed for dashboard applications to present real-world impact, deployments, and project distribution in a visually engaging way.",
@@ -28,6 +29,14 @@ const showcaseData = [
       width: '350px',
     },
     after: <ShowcaseCalendar />,
+  },
+  {
+    id: 5,
+    title: "Energy Loss Waterfall",
+    description:
+      "An interactive hierarchical waterfall chart built with Highcharts to visualize energy generation and loss attribution. The component showcases the breakdown from expected energy output to actual generation through multiple loss categories and sub-causes. Features include expandable/collapsible rows, custom HTML axis labels, dynamic data rendering, and smooth hover interactions. Designed for analytics dashboards to provide deep insights into performance losses with a clean and intuitive user experience.",
+    before: null,
+    after: <EnergyWaterfall />,
   },
   {
     id: 2,

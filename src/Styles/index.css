@@ -102,3 +102,41 @@ body{
 }
 
 /* main buttons style ------------------------------------end--------------------------------------- */
+
+
+/*loss-waterfall Axis label hover */
+#loss-waterfall .loss-axis-label:hover {
+	background-color: #1A1E32;
+}
+
+#loss-waterfall .highcharts-axis-labels.highcharts-xaxis-labels {
+	margin-top: 1px !important;
+
+	span {
+		left: 0px !important;
+		width: 350px !important;
+	}
+}
+
+/* hide crosshair by default */
+#loss-waterfall .highcharts-crosshair {
+  opacity: 0;
+}
+#loss-waterfall.show-crosshair .highcharts-crosshair {
+  opacity: 1;
+}
+
+
+/* hide icon by default */
+.loss-edit-icon {
+	margin-left: 24px;
+	width: 18px;
+	height: 18px;
+	opacity: 0;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.highcharts-data-label:hover .loss-edit-icon {
+	opacity: 1 !important;
+}
