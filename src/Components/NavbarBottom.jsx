@@ -13,35 +13,7 @@ import WorkIcon from '@mui/icons-material/Work';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { startLink } from './MyProjectData';
-
-/* ================= NAV CONFIG ================= */
-const navItems = [
-  {
-    label: 'Home',
-    path: `${startLink}/`,
-    icon: <HomeIcon />,
-  },
-  {
-    label: 'About',
-    path: `${startLink}/about`,
-    icon: <PersonIcon />,
-  },
-  {
-    label: 'Projects',
-    path: `${startLink}/projects`,
-    icon: <WorkIcon />,
-  },
-  {
-    label: 'Showcase',
-    path: `${startLink}/showcase`,
-    icon: <PreviewIcon />,
-  },
-  {
-    label: 'Contact',
-    path: `${startLink}/contact`,
-    icon: <MailIcon />,
-  },
-];
+import { menuItems } from './NavigationLg';
 
 const NavbarBottom = () => {
   const navigate = useNavigate();
@@ -50,7 +22,7 @@ const NavbarBottom = () => {
 
   /* ================= ACTIVE TAB HANDLING ================= */
   useEffect(() => {
-    const currentIndex = navItems.findIndex(
+    const currentIndex = menuItems.findIndex(
       (item) => item.path === location.pathname
     );
     setValue(currentIndex === -1 ? 0 : currentIndex);
@@ -76,7 +48,7 @@ const NavbarBottom = () => {
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
-            navigate(navItems[newValue].path);
+            navigate(menuItems[newValue].path);
           }}
           sx={{
             bgcolor: '#1a1a1a',
@@ -88,7 +60,7 @@ const NavbarBottom = () => {
             },
           }}
         >
-          {navItems.map((item, index) => (
+          {menuItems.map((item, index) => (
             <BottomNavigationAction
               key={index}
               label={item.label}

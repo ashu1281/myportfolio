@@ -11,7 +11,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import { startLink } from './MyProjectData';
 
 /* ================= MENU CONFIG ================= */
-const menuItems = [
+export const menuItems = [
   {
     label: 'Home',
     path: `${startLink}/`,
@@ -23,14 +23,14 @@ const menuItems = [
     icon: <PersonIcon />,
   },
   {
-    label: 'Projects',
-    path: `${startLink}/projects`,
-    icon: <WorkIcon />,
-  },
-  {
     label: 'Showcase',
     path: `${startLink}/showcase`,
     icon: <PreviewIcon />, // ⭐ showcase icon
+  },
+  {
+    label: 'Projects',
+    path: `${startLink}/projects`,
+    icon: <WorkIcon />,
   },
   {
     label: 'Contact',

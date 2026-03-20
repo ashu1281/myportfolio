@@ -459,7 +459,6 @@ export default function LossWaterfall(): JSX.Element {
     // ---------------- RENDER ----------------
     return (
         <Box
-            id="loss-waterfall-container"
             sx={{
                 position: 'relative',
                 overflow: 'hidden',
@@ -469,7 +468,7 @@ export default function LossWaterfall(): JSX.Element {
             }}
         >
 
-            <Box sx={{ display: 'flex', gap: 2, padding: '12px' }}>
+            <Box sx={{ display: 'flex', gap: 2, padding: '12px',flexDirection:{xs:'column',sm:'row'} }}>
                 {LEGENDS.map(item => (
                     <Box
                         key={item.name}
@@ -491,13 +490,14 @@ export default function LossWaterfall(): JSX.Element {
             </Box>
 
             {/* Chart container */}
-            <Box sx={{ width: '100%', height: '100%' }}>
+            <Box sx={{ width: '100%', height: '100%', overflow:'auto' }}>
                 <Box
                     id={"loss-waterfall"}
                     sx={{
                         width: '100%',
                         height: '100%',
                         minHeight: '300px',
+                        minWidth:"700px",
                         opacity: 1,
                         transition: 'opacity 0.25s ease'
                     }}
