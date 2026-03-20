@@ -6,20 +6,20 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import MapViewCarousel from "./MapViewCarousel";
 import { Box } from "@mui/material";
 
-const customStyles: React.CSSProperties = {
+export const customStyles: React.CSSProperties = {
     backgroundColor: "#010202",
     zIndex: 1,
     backgroundImage: `
-    radial-gradient(4px 4px at 20px 30px, #386863, transparent),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath d='M100 94L101 99L106 100L101 101L100 106L99 101L94 100L99 99L100 94Z' fill='%235787BE'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath d='M100 94L101 99L106 100L101 101L100 106L99 101L94 100L99 99L100 94Z' fill='%236D4545'/%3E%3C/svg%3E")
-  `,
+                    radial-gradient(4px 4px at 20px 30px, #386863, transparent),
+                    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 200 200'%3E%3Cpath d='M100 94L101 99L106 100L101 101L100 106L99 101L94 100L99 99L100 94Z' fill='%235787BE'%3E%3Canimate attributeName='opacity' values='0.3;1;0.3' dur='2s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E"),
+                    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 200 200'%3E%3Cpath d='M100 94L101 99L106 100L101 101L100 106L99 101L94 100L99 99L100 94Z' fill='%236D4545'%3E%3Canimate attributeName='opacity' values='1;0.3;1' dur='2s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E")
+                    `,
     backgroundRepeat: "repeat, repeat, repeat",
-    backgroundSize: "200px 200px, 200px 200px, 200px 200px",
+    backgroundSize: "220px 220px, 220px 220px, 220px 220px",
     backgroundPosition: `
     0 0,
     70px 30px,
-    160px 100px
+    210px 180px
   `
 };
 
@@ -45,16 +45,144 @@ const MapView: React.FC = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    /* ---------- ZOOM HELPER ---------- */
+    const zoomToPoint = (
+        chart: Highcharts.Chart,
+        lat: number,
+        lon: number,
+        zoom: number
+    ) => {
+        (chart as any).mapView?.setView([lon, lat], zoom, true);
+    };
+    /* ---------- LABEL FORMATTER ---------- */
+
+    const bubbleLabelFormatter = function (
+        this: Highcharts.Point
+    ) {
+        const p = this as Highcharts.Point & { z: number };
+        const r = ((p as any).marker?.radius || 40) * 1.8;
+
+        return `
+            <div style="text-align:center;font-family:Orbitron;margin-top:${r}px">
+            <div style="
+                color:#FFFFFF;
+                font-size:16px;
+                font-weight:600;
+                margin-bottom:4px;
+            ">
+                ${p.name}
+            </div>
+
+            <div style="
+                display:inline-block;
+                padding:2px 8px;
+                border-radius:4px;
+                background: linear-gradient(282.36deg, rgba(0, 12, 94, 0.8) 2.78%, rgba(33, 45, 132, 0.8) 95.34%);
+                border:2px solid #090E5D;
+                font-size:14px;
+                font-weight:600;
+                letter-spacing: 4%;
+                line-height: 140%;
+                color: #FFFFFF;
+            ">
+                ${p.z}
+            </div>
+            </div>
+        `;
+    };
+
+    /* ---------- SERIES FACTORY ---------- */
+
+    const createBubbleSeries = (
+        id: string,
+        data: any[],
+        visible: boolean
+    ): Highcharts.SeriesOptionsType => ({
+        id,
+        type: "mapbubble",
+        visible,
+        data,
+        minSize: 0,
+        maxSize: 80,
+        cursor: 'pointer',
+        animation: false,
+        marker: {
+            states: {
+                hover: {
+                    enabled: false,
+                },
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            useHTML: true,
+            align: "center",
+            verticalAlign: "top",
+            formatter: bubbleLabelFormatter
+        },
+        point: {
+            events: {
+                click: function () {
+                    const p = this as any;
+                    const chart = this.series.chart as any;
+
+                    zoomToPoint(chart, p.lat, p.lon, 10);
+                }
+            }
+        }
+    });
+
+
+    /* ---------- MARKER STYLE ---------- */
+
+    const createBubbleMarker = (liability: boolean) => {
+        const base = liability ? "57,124,255" : "195,117,117";
+        const darkBase = liability ? "152,187,255" : "250,187,187";
+        const ring = liability ? "166,173,255" : "255,191,166";
+
+        return {
+            lineWidth: 1,
+            lineColor: `rgba(${ring},0.8)`,
+            fillColor: {
+                radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
+                stops: [
+                    [0, `rgba(${darkBase},1)`],
+                    [0.2, `rgba(${darkBase},1)`],
+                    [0.21, `rgba(${base},1)`],
+                    [0.7, `rgba(${base},1)`],
+                    [0.71, `rgba(${base},0.15)`],
+                    [1, `rgba(${base},0.15)`]
+                ]
+            }
+        };
+    };
+
     useEffect(() => {
         if (!chartRef.current) return;
 
         const projectData = [
-            { name: "Mumbai – Fintech Dashboard", lat: 19.076, lon: 72.8777, count: 12 },
-            { name: "Pune – AI Analytics Platform", lat: 18.5204, lon: 73.8567, count: 8 },
-            { name: "Bangalore – Cloud Infrastructure", lat: 12.9716, lon: 77.5946, count: 15 },
-            { name: "Hyderabad – Data Engineering", lat: 17.385, lon: 78.4867, count: 10 },
-            { name: "Chennai – Enterprise Integrations", lat: 13.0827, lon: 80.2707, count: 6 },
-            { name: "Delhi – Government Data Platform", lat: 28.6139, lon: 77.209, count: 9 }
+            { name: "Mumbai – Fintech Dashboard", lat: 19.076, lon: 72.8777, z: 25, liability: true },
+            { name: "Pune – AI Analytics Platform", lat: 18.5204, lon: 73.8567, z: 8, liability: false },
+            { name: "Bangalore – Cloud Infrastructure", lat: 12.9716, lon: 77.5946, z: 15, liability: true },
+            { name: "Hyderabad – Data Engineering", lat: 17.385, lon: 78.4867, z: 10, liability: false },
+            { name: "Chennai – Enterprise Integrations", lat: 13.0827, lon: 80.2707, z: 16, liability: true },
+            { name: "Delhi – Government Data Platform", lat: 28.6139, lon: 77.209, z: 10, liability: false }
+        ];
+
+        const bubblesData = [
+            ...projectData.map((p) => ({
+                ...p,
+                marker: createBubbleMarker(p.liability)
+            })),
+            {
+                name: "__dummy__",
+                lat: 0,
+                lon: 0,
+                z: 0,
+                color: "transparent",
+                dataLabels: { enabled: false },
+                enableMouseTracking: false
+            }
         ];
 
         chartInstance.current = Highcharts.mapChart(chartRef.current, {
@@ -108,33 +236,7 @@ const MapView: React.FC = () => {
                 //     opacity: 0.2
                 // },
 
-                {
-                    type: "mapbubble",
-                    data: projectData.map((p) => ({
-                        name: p.name,
-                        lat: p.lat,
-                        lon: p.lon,
-                        z: p.count
-                    })),
-                    minSize: 20,
-                    maxSize: "8%",
-                    sizeBy: "area",
-                    marker: {
-                        fillColor: "rgba(0,150,255,0.85)",
-                        lineWidth: 0
-                    },
-
-                    dataLabels: {
-                        enabled: true,
-                        format: "{point.name}",
-                        style: {
-                            color: "#ffffff",
-                            fontSize: "14px",
-                            fontWeight: "600",
-                            textOutline: "none"
-                        }
-                    }
-                }
+                createBubbleSeries("places", bubblesData, true),
             ],
 
             credits: {
@@ -144,27 +246,6 @@ const MapView: React.FC = () => {
             legend: { enabled: false }
         });
 
-        const chart = chartInstance.current;
-
-        Highcharts.addEvent(chart.mapView as any, "afterSetView", function () {
-            const zoom = chart.mapView?.zoom || 1;
-
-            const pointSeries = chart.series.find((s: any) => s.type === "mapbubble");
-
-            if (pointSeries) {
-                pointSeries.points.forEach((point: any) => {
-                    const count = point.options.z || 1;
-                    const baseSize = 8 + Math.log(count) * 2;
-                    const zoomFactor = zoom * 1.5;
-
-                    const finalRadius = baseSize + zoomFactor;
-
-                    point.graphic?.attr({
-                        r: finalRadius
-                    });
-                });
-            }
-        });
     }, []);
 
     return (
@@ -215,7 +296,7 @@ const MapView: React.FC = () => {
                 onClick={resetZoom}
                 sx={{
                     position: "absolute",
-                    display:{xs:'none', md:"flex"},
+                    display: { xs: 'none', md: "flex" },
                     top: 50,
                     right: 20,
                     width: 38,
@@ -244,7 +325,7 @@ const MapView: React.FC = () => {
                     width: { xs: "95%", md: "80%" },
                     height: "100%",
                     aspectRatio: "1 / 1",
-                    borderRadius:  { xs: "5%", md: "50%" },
+                    borderRadius: { xs: "5%", md: "50%" },
                     overflow: "hidden",
                     border: "12px solid transparent",
                     outline: "2.85px solid #067FBA",

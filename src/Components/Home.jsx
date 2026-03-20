@@ -5,11 +5,12 @@ import { startLink } from './MyProjectData';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import '../Styles/Home.css';
+import { customStyles } from './showcaseComponents/highcharts/map-view/MapView';
 
 export const Home = () => {
   const navigate = useNavigate();
   return (
-    <Box minHeight="710px" height="100vh" overflow="hidden">
+    <Box minHeight="710px" height="100vh" overflow="hidden" sx={{...customStyles}}>
       <Box
         className="home-bg-img"
         minHeight="710px"
