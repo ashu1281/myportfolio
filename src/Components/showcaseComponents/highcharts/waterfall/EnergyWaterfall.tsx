@@ -1,14 +1,13 @@
 // src/components/LossWaterfall.tsx
+import { Box, Typography } from "@mui/material";
 import * as Highcharts from "highcharts";
 import "highcharts/highcharts-more";
-import { JSX, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Box, Typography } from "@mui/material";
-import { baseData } from "./lossBaseData";
-import ExpandLess from "../../../../Images/pojectImages/showCaseImages/expand_less.svg"
-import ExpandMore from "../../../../Images/pojectImages/showCaseImages/expand_more.svg";
+import { JSX, useEffect, useMemo, useRef, useState } from "react";
 import EditIcon from "../../../../Images/pojectImages/showCaseImages/edit.svg";
+import ExpandLess from "../../../../Images/pojectImages/showCaseImages/expand_less.svg";
+import ExpandMore from "../../../../Images/pojectImages/showCaseImages/expand_more.svg";
+import { baseData } from "./lossBaseData";
 
-import { useParams } from "react-router-dom";
 
 // ---------------- TYPES ----------------
 export interface LossData {
