@@ -50,11 +50,7 @@ const getVisibleNodes = (
 const LEGENDS = [
     {
         color: '#0042C4',
-        name: 'Target'
-    },
-    {
-        color: '#4785FF',
-        name: 'Target Adjusted'
+        name: 'Expected Energy Output'
     },
     {
         color: '#8A2330',
