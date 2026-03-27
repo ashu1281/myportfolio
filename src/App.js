@@ -44,7 +44,7 @@ function App() {
       setTimeout(() => {
         scroller.scrollTo(target.to, {
           smooth: true,
-          duration: 0, // instant on load
+          duration: 600,
           offset: -80,
         });
       }, 100); // wait for DOM
