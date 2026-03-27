@@ -86,9 +86,10 @@
 
 
 
-.pageActive{
-   background-color: var(--mainPraimary) !important;
-   color: white !important;
+/* apply active style to icon */
+.pageActive .circle-btn-icon {
+  background-color: var(--mainPraimary) !important;
+  color: white !important;
 }
 
 

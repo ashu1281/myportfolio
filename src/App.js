@@ -1,76 +1,67 @@
-import { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useState } from "react";
 
-import Home from './Components/Home';
-import TogleTheme from './Components/TogleTheme';
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import Home from "./Components/Home";
+import Projects from "./Components/Projects";
+import Showcase from "./Components/Showcase";
 
-import { CssBaseline, GlobalStyles } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import About from './Components/About';
-import Contact from './Components/Contact';
-import NavbarBottom from './Components/NavbarBottom';
-import NavigationLg from './Components/NavigationLg';
-import Projects from './Components/Projects';
-import Showcase from './Components/Showcase';
-
-
+import NavbarBottom from "./Components/NavbarBottom";
+import NavigationLg from "./Components/NavigationLg";
+import TogleTheme from "./Components/TogleTheme";
 
 function App() {
-
   const [toggleDark, settoggleDark] = useState(true);
 
   const myTheme = createTheme({
-    // Theme settings
     palette: {
       mode: toggleDark ? "dark" : "light",
-      primary: { main: '#018dff' },
-      text: { disabled: '#018dff' }
+      primary: { main: "#018dff" },
+      text: { disabled: "#018dff" }
     },
     components: {
       MuiPaper: {
         styleOverrides: {
           root: {
-            backgroundImage: "linear-gradient( rgba(255, 255, 255, 0.16), rgb(1 141 255 / 43%), rgba(255, 255, 255, 0.16))"
-          },
-        },
-      },
-    },
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.16), rgb(1 141 255 / 43%), rgba(255,255,255,0.16))"
+          }
+        }
+      }
+    }
   });
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-
       <ThemeProvider theme={myTheme}>
         <CssBaseline />
+
         <TogleTheme toggleDark={toggleDark} settoggleDark={settoggleDark} />
+
         <GlobalStyles
           styles={{
-            "*::-webkit-scrollbar": {
-              width: "0.3em"
-            },
-            "*::-webkit-scrollbar-track": {
-              "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)"
-            },
+            "*::-webkit-scrollbar": { width: "0.3em" },
             "*::-webkit-scrollbar-thumb": {
-              backgroundColor: "rgba(0,0,0,.1)",
-              outline: "1px solid slategrey"
+              backgroundColor: "rgba(0,0,0,.1)"
             }
           }}
         />
-        <NavigationLg />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/projects' element={<Projects />} />
-          <Route path="/showcase" element={<Showcase />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='*' element={<Home />} />
-        </Routes>
-        <NavbarBottom/>
-      </ThemeProvider>
 
+        <NavigationLg />
+
+        {/* SCROLL SECTIONS */}
+        <div id="home"><Home /></div>
+        <div id="about"><About /></div>
+        <div id="showcase"><Showcase /></div>
+        <div id="projects"><Projects /></div>
+        <div id="contact"><Contact /></div>
+
+        <NavbarBottom />
+      </ThemeProvider>
     </LocalizationProvider>
   );
 }

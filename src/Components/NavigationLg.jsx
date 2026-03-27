@@ -1,80 +1,54 @@
-import { Box, Stack, Typography } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
-import '../Styles/NavigationLg.css';
+import { Box, Stack, Typography } from "@mui/material";
+import "../Styles/NavigationLg.css";
 
-import HomeIcon from '@mui/icons-material/Home';
-import MailIcon from '@mui/icons-material/Mail';
-import PersonIcon from '@mui/icons-material/Person';
-import PreviewIcon from '@mui/icons-material/Preview';
-import WorkIcon from '@mui/icons-material/Work';
+import HomeIcon from "@mui/icons-material/Home";
+import MailIcon from "@mui/icons-material/Mail";
+import PersonIcon from "@mui/icons-material/Person";
+import PreviewIcon from "@mui/icons-material/Preview";
+import WorkIcon from "@mui/icons-material/Work";
 
-import { startLink } from './MyProjectData';
+import { Link } from "react-scroll";
 
-/* ================= MENU CONFIG ================= */
 export const menuItems = [
-  {
-    label: 'Home',
-    path: `${startLink}/`,
-    icon: <HomeIcon />,
-  },
-  {
-    label: 'About Me',
-    path: `${startLink}/about`,
-    icon: <PersonIcon />,
-  },
-  {
-    label: 'Showcase',
-    path: `${startLink}/showcase`,
-    icon: <PreviewIcon />, // ⭐ showcase icon
-  },
-  {
-    label: 'Projects',
-    path: `${startLink}/projects`,
-    icon: <WorkIcon />,
-  },
-  {
-    label: 'Contact',
-    path: `${startLink}/contact`,
-    icon: <MailIcon />,
-  },
+  { label: "Home", to: "home", icon: <HomeIcon /> },
+  { label: "About Me", to: "about", icon: <PersonIcon /> },
+  { label: "Showcase", to: "showcase", icon: <PreviewIcon /> },
+  { label: "Projects", to: "projects", icon: <WorkIcon /> },
+  { label: "Contact", to: "contact", icon: <MailIcon /> }
 ];
 
 const NavigationLg = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   return (
     <Stack
-      zIndex={99}
       position="fixed"
       top="50%"
       right={40}
-      sx={{ transform: 'translateY(-50%)' }}
-      display={{ xs: 'none', lg: 'flex' }}
+      zIndex={99}
+      sx={{ transform: "translateY(-50%)" }}
+      display={{ xs: "none", lg: "flex" }}
     >
-      <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+      <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
         <Box
           display="flex"
           flexDirection="column"
-          justifyContent="space-between"
           alignItems="end"
           gap={3}
           fontSize={18}
           fontWeight="bold"
         >
-          {menuItems.map((item) => {
-            const isActive = location.pathname === item.path;
-
-            return (
-              <div
-                key={item.path}
-                className="circle-btn"
-                onClick={() => navigate(item.path)}
-              >
+          {menuItems.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              smooth={true}
+              duration={500}
+              spy={true}
+              offset={-80}
+              activeClass="pageActive"
+            >
+              <div className="circle-btn">
                 <Box
-                  className={`circle-btn-icon ${
-                    isActive ? 'pageActive' : ''
-                  }`}
+                  className="circle-btn-icon"
                   bgcolor="action.disabledBackground"
                   color="text.secondary"
                 >
@@ -87,8 +61,8 @@ const NavigationLg = () => {
                   </Typography>
                 </div>
               </div>
-            );
-          })}
+            </Link>
+          ))}
         </Box>
       </ul>
     </Stack>

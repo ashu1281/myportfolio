@@ -5,35 +5,50 @@ import {
 } from '@mui/material';
 import { Fragment, useEffect, useState } from 'react';
 
-import HomeIcon from '@mui/icons-material/Home';
-import MailIcon from '@mui/icons-material/Mail';
-import PersonIcon from '@mui/icons-material/Person';
-import PreviewIcon from '@mui/icons-material/Preview';
-import WorkIcon from '@mui/icons-material/Work';
-
-import { useLocation, useNavigate } from 'react-router-dom';
-import { startLink } from './MyProjectData';
+import { scroller, Events, scrollSpy } from "react-scroll"; // ✅ add
 import { menuItems } from './NavigationLg';
 
 const NavbarBottom = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
   const [value, setValue] = useState(0);
 
-  /* ================= ACTIVE TAB HANDLING ================= */
+  /* ACTIVE TAB VIA SCROLL */
   useEffect(() => {
-    const currentIndex = menuItems.findIndex(
-      (item) => item.path === location.pathname
-    );
-    setValue(currentIndex === -1 ? 0 : currentIndex);
-  }, [location.pathname]);
+    Events.scrollEvent.register("begin", () => {});
+
+    scrollSpy.update();
+
+    const handleScroll = () => {
+      const sections = menuItems.map(item =>
+        document.getElementById(item.to)
+      );
+
+      let activeIndex = 0;
+
+      sections.forEach((section, index) => {
+        if (!section) return;
+
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          activeIndex = index;
+        }
+      });
+
+      setValue(activeIndex);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      Events.scrollEvent.remove("begin");
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <Fragment>
-      {/* Spacer for fixed bottom nav */}
       <Box height="56px" display={{ xs: 'block', lg: 'none' }} />
 
-      {/* Bottom Navigation */}
       <Box
         sx={{
           position: 'fixed',
@@ -48,7 +63,12 @@ const NavbarBottom = () => {
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
-            navigate(menuItems[newValue].path);
+
+            scroller.scrollTo(menuItems[newValue].to, {
+              smooth: true,
+              duration: 500,
+              offset: -80,
+            });
           }}
           sx={{
             bgcolor: '#1a1a1a',
