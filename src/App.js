@@ -10,10 +10,11 @@ import Home from "./Components/Home";
 import Projects from "./Components/Projects";
 import Showcase from "./Components/Showcase";
 
+import { useEffect } from "react";
+import { scroller } from "react-scroll";
 import NavbarBottom from "./Components/NavbarBottom";
-import NavigationLg from "./Components/NavigationLg";
+import NavigationLg, { menuItems } from "./Components/NavigationLg";
 import TogleTheme from "./Components/TogleTheme";
-
 function App() {
   const [toggleDark, settoggleDark] = useState(true);
 
@@ -34,6 +35,21 @@ function App() {
       }
     }
   });
+  useEffect(() => {
+    const path = window.location.pathname.replace("/", "");
+
+    const target = menuItems.find(item => item.to === path);
+
+    if (target) {
+      setTimeout(() => {
+        scroller.scrollTo(target.to, {
+          smooth: true,
+          duration: 0, // instant on load
+          offset: -80,
+        });
+      }, 100); // wait for DOM
+    }
+  }, []);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
