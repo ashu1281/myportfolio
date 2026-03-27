@@ -248,6 +248,22 @@ const MapView: React.FC = () => {
 
     }, []);
 
+    useEffect(() => {
+        const el = chartRef.current;
+        if (!el) return;
+
+        const handleWheel = (e: WheelEvent) => {
+            if (e.ctrlKey) {
+                e.preventDefault(); // stops browser zoom
+            }
+        };
+
+        el.addEventListener("wheel", handleWheel, { passive: false });
+
+        return () => {
+            el.removeEventListener("wheel", handleWheel);
+        };
+    }, []);
     return (
         <Box
             sx={{
