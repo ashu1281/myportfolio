@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import Highcharts from "highcharts/highmaps";
-import "highcharts/modules/tiledwebmap";
-import "highcharts/modules/marker-clusters";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import MapViewCarousel from "./MapViewCarousel";
 import { Box } from "@mui/material";
+import Highcharts from "highcharts/highmaps";
+import "highcharts/modules/marker-clusters";
+import "highcharts/modules/tiledwebmap";
+import React, { useEffect, useRef, useState } from "react";
 
 export const customStyles: React.CSSProperties = {
     backgroundColor: "#010202",
@@ -248,22 +247,6 @@ const MapView: React.FC = () => {
 
     }, []);
 
-    useEffect(() => {
-        const el = chartRef.current;
-        if (!el) return;
-
-        const handleWheel = (e: WheelEvent) => {
-            if (e.ctrlKey) {
-                e.preventDefault(); // stops browser zoom
-            }
-        };
-
-        el.addEventListener("wheel", handleWheel, { passive: false });
-
-        return () => {
-            el.removeEventListener("wheel", handleWheel);
-        };
-    }, []);
     return (
         <Box
             sx={{
@@ -359,19 +342,6 @@ const MapView: React.FC = () => {
                 />
             </Box>
 
-            {/* Carousel */}
-            <Box
-                sx={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    width: "100%",
-                    minHeight: { xs: "170px", md: "190px" },
-                    zIndex: 2
-                }}
-            >
-                <MapViewCarousel />
-            </Box>
         </Box>
     );
 };

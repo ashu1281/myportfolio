@@ -8,17 +8,17 @@ import ResourceAllocationCalendar from './showcaseComponents/amchartgraphs/alloc
 import ShowcaseCalendar from './showcaseComponents/calendarfilter/ShowcaseCalendar';
 import LinkPreviewContainer from './showcaseComponents/linkpreviewUI/LinkPreviewContainer';
 import PageTitle from './ui/PageTitle';
-import MapView from './showcaseComponents/highcharts/map-view/MapView';
 import EnergyWaterfall from './showcaseComponents/highcharts/waterfall/EnergyWaterfall';
+import MapViewContainer from './showcaseComponents/highcharts/map-view/MapViewContainer';
 
 const showcaseData = [
   {
     id: 6,
     title: "Map View",
     description:
-      "An interactive geospatial visualization built with Highcharts Maps and Esri satellite tiles. The component displays project footprints across regions using dynamic bubble markers that scale with zoom levels. Features include smooth panning/zooming, clustered markers, Attractive & Responsive globe-style layout, and a continuously scrolling project showcase carousel. Designed for dashboard applications to present real-world impact, deployments, and project distribution in a visually engaging way.",
+      "Interactive geospatial view with 3D Globe and 2D Map modes, powered by react-globe.gl and Highcharts Maps (Esri imagery). Explore project locations with dynamic bubbles, smooth zooming, and responsive visuals. Use the tabs below to switch between Globe and Map views.",
     before: null,
-    after: <MapView />,
+    after: <MapViewContainer />,
   },
   {
     id: 1,
