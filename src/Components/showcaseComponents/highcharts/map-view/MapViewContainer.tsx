@@ -47,7 +47,7 @@ const MapViewContainer: React.FC = () => {
                         fontSize: "13px",
                         minHeight: "36px",
                         "&.Mui-selected": { color: "#ffffff" },
-                         maxWidth: { xs: '100px', sm: "auto" }
+                         maxWidth: { xs: '100px', sm: "100%" }
                     }}
                 />
 
@@ -60,7 +60,7 @@ const MapViewContainer: React.FC = () => {
                         fontSize: "13px",
                         minHeight: "36px",
                         "&.Mui-selected": { color: "#ffffff" },
-                        maxWidth: { xs: '100px', sm: "auto" }
+                        maxWidth: { xs: '100px', sm: "100%" }
                     }}
                 />
             </Tabs>
